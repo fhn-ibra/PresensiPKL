@@ -32,6 +32,9 @@ Route::group(['middleware' => ['guru']], function(){
 });
 //----------Guru Route----------
 
+Route::get('/home', function(){
+    return view('Siswa.dashboard');
+});
 
 
 //----------Siswa Route----------
@@ -50,3 +53,15 @@ Route::group(['middleware' => ['siswa']], function(){
 Route::get('auth/google', [LoginController::class, 'redirectGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
 //----------Google Route----------
+
+Route::get('/test', function(){
+return view('guru.dashboard');
+});
+
+Route::get('/testying', function(){
+    return view('perusahaan.index');
+    });
+
+    Route::get('/testyinng', function(){
+        return view('Siswa.datasiswa');
+        });
