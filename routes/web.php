@@ -14,19 +14,39 @@ use App\Http\Controllers\LoginController;
 |
 */
 
+//----------Guest Route----------
 Route::group(['middleware' => ['guest']], function(){
     Route::get('/', [LoginController::class, 'index']);
-
 });
+//----------Guest Route----------
 
+//----------Universal Auth Route----------
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/logout', [LoginController::class, 'logout']);
+    });
+//----------Universal Auth Route----------
+
+
+//----------Guru Route----------
+Route::group(['middleware' => ['guru']], function(){
 });
+//----------Guru Route----------
 
-Route::get('/a', function(){
-    return view('Siswa.dashboard');
+
+
+//----------Siswa Route----------
+Route::group(['middleware' => ['siswa']], function(){
+    Route::get('/home', function(){
+        return view('Siswa.dashboard');
+    });
 });
+//----------Siswa Route----------
 
 
+
+
+
+//----------Google Route----------
 Route::get('auth/google', [LoginController::class, 'redirectGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
+//----------Google Route----------

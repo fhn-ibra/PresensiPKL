@@ -24,9 +24,12 @@ class LoginController extends Controller
             $find = User::where('email', $user->email)->first();
 
             if($find){
-                dd($find->level);
                 Auth::login($find);
-                return redirect('/');
+                if(Auth::user()->level == 'siswa'){
+                    return redirect('/home');
+                } else {
+                    return redirect('/dashboard');
+                }
             } else {
                 return redirect('/')->with(['error' => 'Akun Tidak Terdaftar']);
             }
