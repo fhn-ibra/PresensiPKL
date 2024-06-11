@@ -13,8 +13,8 @@
             <strong>Histori</strong>
         </div>
     </a>
-
-    @if (Auth::guard('karyawan')->user()->status_jam_kerja == 1)
+    {{-- TODO: Ubah Menjadi Siswa Auth --}}
+    {{-- @if (Auth::guard('karyawan')->user()->status_jam_kerja == 1)
         <a href="/presensi/null/create" class="item {{ request()->is('presensi/null/create') ? 'active' : '' }}">
             <div class="col">
                 <ion-icon name="camera-outline"></ion-icon>
@@ -28,7 +28,7 @@
                 <strong>Absensi</strong>
             </div>
         </a>
-    @endif
+    @endif --}}
 
     {{-- <a href="/presensi/izin" class="item {{ request()->is('presensi/izin') ? 'active' : '' }}">
         <div class="col">
