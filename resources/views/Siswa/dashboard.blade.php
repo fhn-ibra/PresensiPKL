@@ -142,7 +142,7 @@
 
         <div id="rekappresensi">
             <h3>Rekap Presensi Bulan {{--  {{ $namabulan[$bulanini] }} Tahun {{ $tahunini }}--}}</h3>
-            <div class="row">
+            <div class="row d-flex justify-content-center">
                 <div class="col-4">
                     <div class="card">
                         <div class="card-body text-center" style="padding: 12px 12px !important; line-height:0.8rem">
