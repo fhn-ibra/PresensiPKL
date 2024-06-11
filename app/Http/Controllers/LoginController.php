@@ -24,13 +24,19 @@ class LoginController extends Controller
             $find = User::where('email', $user->email)->first();
 
             if($find){
+                dd($find->level);
                 Auth::login($find);
-                return redirect('/f');
+                return redirect('/');
             } else {
                 return redirect('/')->with(['error' => 'Akun Tidak Terdaftar']);
             }
         } catch (Exception $e) {
             return redirect('/')->with(['error' => 'Silahkan Login Lagi']);
         }
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
     }
 }

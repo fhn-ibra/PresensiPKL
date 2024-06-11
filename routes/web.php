@@ -16,6 +16,15 @@ use App\Http\Controllers\LoginController;
 
 Route::group(['middleware' => ['guest']], function(){
     Route::get('/', [LoginController::class, 'index']);
+
+});
+
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('/logout', [LoginController::class, 'logout']);
+});
+
+Route::get('/a', function(){
+    return view('Siswa.dashboard');
 });
 
 
