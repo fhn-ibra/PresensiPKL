@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('siswa.login');
+Route::group(['middleware' => ['guest']], function(){
+    Route::get('/', [LoginController::class, 'index']);
 });
+
+
+
+Route::get('auth/google', [LoginController::class, 'redirectGoogle'])->name('auth.google');
+Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);

@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#004AAD">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Login - Absensi PKL</title>
     <meta name="description" content="Mobilekit HTML Mobile UI Kit">
     <meta name="keywords" content="SIAKAD PKL SMK PRESTASI PRIMA" />
     <link rel="icon" type="image/png" href="{{ asset('icon-512.png') }}" sizes="32x32">
@@ -220,7 +220,7 @@
     <section class="container forms">
         <div class="form login">
             <div class="form-content">
-                <header>Login Peminatan</header>
+                <header>Login Absensi PKL</header>
 
 
 
@@ -232,24 +232,28 @@
                 <!-- Pakai API GOOGLE -->
                 <a href="/auth/google" class="field google">
                 <img src="{{ asset('google.png') }}" alt="Google Image" class="google-img">
-                <span><b>Login Memakai Akun Sekolah!</b></span>
+                <span><b>Login Memakai Akun Sekolah</b></span>
                 </a>
             </div>
 
 
-            <div class="media-options">
+            {{-- <div class="media-options">
                 <a href="#" class="field facebook">
                     <span>Manual Book</span>
                 </a>
-            </div>
+            </div> --}}
             <br>
 
 
-           
+            <center>
+                <div class="row">
+                    <div class="d-flex justify-content-center"><b>Created by <a
+                    href="https://www.instagram.com/ibrbbra?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Ibra</a>,
+                <a href="https://www.instagram.com/e_erlanggaa?igsh=OGQ5ZDc2ODk2ZA==">Erlangga</a> & <a href="a">Revaldo</a></b>
+            </div>
+        </center>
         </div>
-
-
-
+           
         </div>
 
 
@@ -269,6 +273,18 @@
     <script src="{{ asset('assets/js/plugins/jquery-circle-progress/circle-progress.min.js') }}"></script>
     <!-- Base Js File -->
     <script src="{{ asset('assets/js/base.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (!empty(session('error')))
+    <script>
+        Swal.fire({
+            icon: "error",
+            title: "Oops..",
+            text: "{{ session('error') }}"
+        });
+    </script>
+@endif
+</body>
 
 
 </body>
