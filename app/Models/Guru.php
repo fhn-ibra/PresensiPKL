@@ -12,5 +12,20 @@ class Guru extends Model
     protected $table = 'guru';
     public $timestamps = false;
 
-    protected $fillable = [];
+    protected $fillable = [
+        'id_user',
+        'nohp'
+    ];
+
+    public function perusahaan(){
+        return $this->hasMany(Perusahaan::class, 'id_guru', 'id');
+    }
+
+    public function user(){
+        return $this->belongsto(User::class, 'id_user', 'id');
+    }
+
+    public function siswa(){
+        return $this->hasMany(Siswa::class, 'id_guru', 'id');
+    }
 }

@@ -12,5 +12,26 @@ class Siswa extends Model
     protected $table = 'siswa';
     public $timestamps = false;
 
-    protected $fillable = [];
+    protected $fillable = [
+        'id_user',
+        'id_perusahaan',
+        'id_guru',
+        'kelas',
+    ];
+
+    public function absen(){
+        return $this->hasMany(Absen::class, 'id_siswa', 'id');
+    }
+
+    public function perusahaan(){
+        return $this->belongsTo(Perusahaan::class, 'id_perusahaan', 'id');
+    }
+
+    public function guru(){
+        return $this->belongsTo(Guru::class, 'id_guru', 'id');
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'id_user', 'id');
+    }
 }

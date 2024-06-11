@@ -33,8 +33,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        // 'password',
+        // 'remember_token',
     ];
 
     /**
@@ -43,7 +43,15 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        // 'email_verified_at' => 'datetime',
+        // 'password' => 'hashed',
     ];
+
+    public function guru(){
+        return $this->hasMany(Guru::class, 'id_user', 'id');
+    }
+
+    public function siswa(){
+        return $this->hasMany(Siswa::class, 'id_user', 'id');
+    }
 }
