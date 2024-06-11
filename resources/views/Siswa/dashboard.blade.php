@@ -15,7 +15,7 @@
         } 
     </style>
     <div class="section" id="user-section">
-        <a href="/proseslogout" class="logout">
+        <a href="/logout" class="logout">
             <ion-icon name="exit-outline"></ion-icon>
         </a>
         <div id="user-detail">
@@ -143,7 +143,7 @@
         <div id="rekappresensi">
             <h3>Rekap Presensi Bulan {{--  {{ $namabulan[$bulanini] }} Tahun {{ $tahunini }}--}}</h3>
             <div class="row">
-                <div class="col-3">
+                <div class="col-4">
                     <div class="card">
                         <div class="card-body text-center" style="padding: 12px 12px !important; line-height:0.8rem">
                             <span class="badge bg-danger"
@@ -155,12 +155,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body text-center" style="padding: 12px 12px !important; line-height:0.8rem">
+                            <span class="badge bg-danger"
+                                style="position: absolute; top:3px; right:11px; font-size:0.6rem; z-index:999">
+                                {{-- {{ $rekappresensi->jmlizin }} --}}
+                            </span>
+                            <ion-icon name="ban-outline" style="font-size: 1.6rem;"
+                                class="text-warning mb-1"></ion-icon>
+                            <br>
+                            <span style="font-size: 0.8rem; font-weight:500">Tidak Hadir</span>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="col-3">
                     <div class="card">
                         <div class="card-body text-center" style="padding: 12px 12px !important; line-height:0.8rem">
                             <span class="badge bg-danger"
                                 style="position: absolute; top:3px; right:10px; font-size:0.6rem; z-index:999">
-                                {{-- {{ $rekappresensi->jmlizin }} --}}
+                                {{ $rekappresensi->jmlizin }}
                             </span>
                             <ion-icon name="newspaper-outline" style="font-size: 1.6rem;"
                                 class="text-success mb-1"></ion-icon>
@@ -174,14 +188,15 @@
                         <div class="card-body text-center" style="padding: 12px 12px !important; line-height:0.8rem">
                             <span class="badge bg-danger"
                                 style="position: absolute; top:3px; right:10px; font-size:0.6rem; z-index:999">
-                            {{-- {{ $rekappresensi->jmlsakit }}--}}</span> 
+                            {{ $rekappresensi->jmlsakit }}</span> 
                             <ion-icon name="medkit-outline" style="font-size: 1.6rem;"
                                 class="text-warning mb-1"></ion-icon>
                             <br>
                             <span style="font-size: 0.8rem; font-weight:500">Sakit</span>
                         </div>
                     </div>
-                </div>
+                </div> --}}
+
                 {{-- <div class="col-3">
                     <div class="card">
                         <div class="card-body text-center" style="padding: 12px 12px !important; line-height:0.8rem">
