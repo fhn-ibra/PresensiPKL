@@ -7,7 +7,7 @@
             <div class="col">
                 <!-- Page pre-title -->
                 <div class="page-pretitle">
-                    {{-- Selamat Datang DI SIAKAD PKL SMK PRESTASI PRIMA --}}
+                    SIAKAD PKL SMK PRESTASI PRIMA
                 </div>
                 <h2 class="page-title">
                     PERUSAHAAN
@@ -33,8 +33,9 @@
 
         <div class="row">
 
+            @foreach($perusahaan as $item)
             <div class="col-md-6 col-xl-2">
-                <a href="your-link-here" class="text-decoration-none">
+                <a href="/perusahaan/{{ $item->id }}" class="text-decoration-none">
                     <div class="card card-sm">
                         <div class="card-body">
                             <div class="row align-items-center">
@@ -58,7 +59,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="text-muted">
-                                        Perusahaan
+                                        {{ $item->nama }}
                                     </div>
                                 </div>
                             </div>
@@ -66,6 +67,7 @@
                     </div>
                 </a>
             </div>
+            @endforeach
 
 
 
@@ -80,7 +82,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="perusahaan" method="POST" id="frmCabang">
+                <form action="/perusahaan" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-12">
@@ -101,7 +103,7 @@
                                     <path d="M9 18l0 .01" />
                                 </svg>
                             </span>
-                            <input type="text" value="" id="nama_perusahaan" class="form-control"
+                            <input required type="text" value="" id="nama_perusahaan" class="form-control"
                                 placeholder="Nama Perusahaan" name="nama_perusahaan">
                         </div>
                     </div>
@@ -124,7 +126,7 @@
                                     <path d="M19 18v.01" />
                                 </svg>
                             </span>
-                            <input type="text" id="alamat_perusahaan" value="" class="form-control"
+                            <input required type="text" id="alamat_perusahaan" value="" class="form-control"
                                 name="alamat_perusahaan" placeholder="Alamat Perusahaan">
                         </div>
                     </div>
@@ -142,7 +144,7 @@
                                     <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                                 </svg>
                             </span>
-                            <input type="text" id="pj_perusahaan" value="" class="form-control" name="pj_perusahaan"
+                            <input required type="text" id="pj_perusahaan" class="form-control" name="pj_perusahaan"
                                 placeholder="Nama Penanggung Jawab Perusahaan">
                         </div>
                     </div>
@@ -162,7 +164,7 @@
                                         d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
                                 </svg>
                             </span>
-                            <input type="text" id="no_pj" value="" class="form-control" name="no_pj"
+                            <input required type="text" class="form-control" name="no_pj"
                                 placeholder="No Telp Penanggung Jawab">
                         </div>
                     </div>
@@ -171,14 +173,11 @@
 
                     <div class="form-group">
 
-                        <select name="Guru" id="Guru" class="form-select">
-
-                            <option value="">Nama Guru</option>
-                            <!-- foreach (syantax nama guru)) -->
-                            <option>
-                                <!--Option Guru-->
-                            </option>
-                            <!-- endforeach -->
+                        <select name="guru" class="form-select" required>
+                            <option value="" selected disabled>Nama Guru</option>
+                            @foreach ($guru as $item)
+                            <option value="{{ $item->id }}">{{ $item->user->nama }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

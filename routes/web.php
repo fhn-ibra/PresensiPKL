@@ -18,7 +18,7 @@ use App\Http\Controllers\GuruController;
 
 //----------Guest Route----------
 Route::group(['middleware' => ['guest']], function(){
-    Route::get('/', [LoginController::class, 'index']);
+    Route::get('/', [LoginController::class, 'index'])->name('login');
 });
 //----------Guest Route----------
 
@@ -32,8 +32,13 @@ Route::group(['middleware' => ['auth']], function(){
 //----------Guru Route----------
 Route::group(['middleware' => ['guru']], function(){
     Route::get('/dashboard', [GuruController::class, 'dashboard'])->name('dashboard');
+
     Route::get('/perusahaan', [GuruController::class, 'perusahaan']);
+    Route::post('/perusahaan', [GuruController::class, 'addPerusahaan']);
+    Route::get('/perusahaan/{id}', [GuruController::class, 'detailPerusahaan']);
+
     Route::get('/siswa', [GuruController::class, 'siswa']);
+
 });
 //----------Guru Route----------
 
