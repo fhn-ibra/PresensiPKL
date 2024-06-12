@@ -7,7 +7,7 @@
         </div>
     </a>
     {{-- TODO: Ubah Menjadi Siswa Auth --}}
-    <a href="#" class="item">
+    <a href="/create" class="item">
         <div class="col">
             <ion-icon name="camera-outline"></ion-icon>
             <strong>Absen</strong>  

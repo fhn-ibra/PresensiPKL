@@ -79,6 +79,10 @@
     <div class="row">
         <div class="col">
             {{-- TODO: Fix Absen --}}
+            <button id="takeabsen" class="btn btn-primary btn-block">
+                <ion-icon name="camera-outline"></ion-icon>
+                Absen Masuk
+            </button>
             {{-- @if ($cek > 0)
                 <button id="takeabsen" class="btn btn-danger btn-block">
                     <ion-icon name="camera-outline"></ion-icon>
