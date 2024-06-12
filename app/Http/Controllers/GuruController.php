@@ -7,14 +7,23 @@ use Illuminate\Http\Request;
 class GuruController extends Controller
 {
     public function dashboard(){
-        return view('Guru.dashboard');
+        $data = [
+            'title' => 'Dashboard'
+        ];
+        return view('Guru.dashboard', $data);
     }
 
     public function perusahaan(){
-        return view('Guru.Perusahaan.index');
+        $data = [
+            'title' => 'Perusahaan'
+        ];
+        return view('Guru.Perusahaan.index', $data);
     }
 
     public function siswa(){
-        return view('Guru.datasiswa');
+        $data = [
+            'title' => 'Rekap Siswa'
+        ];
+        return view('Guru.datasiswa', $data);
     }
 }

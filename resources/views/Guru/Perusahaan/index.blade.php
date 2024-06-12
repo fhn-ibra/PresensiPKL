@@ -1,4 +1,5 @@
 @extends('layouts.admin.tabler')
+
 @section('content')
 <div class="page-header d-print-none">
     <div class="container-xl">
@@ -6,7 +7,7 @@
             <div class="col">
                 <!-- Page pre-title -->
                 <div class="page-pretitle">
-                    Selamat Datang DI SIAKAD PKL SMK PRESTASI PRIMA
+                    {{-- Selamat Datang DI SIAKAD PKL SMK PRESTASI PRIMA --}}
                 </div>
                 <h2 class="page-title">
                     PERUSAHAAN
@@ -79,7 +80,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- <form action="perusahaan" method="POST" id="frmCabang"> -->
+                <form action="perusahaan" method="POST" id="frmCabang">
                 @csrf
                 <div class="row">
                     <div class="col-12">
