@@ -1,19 +1,18 @@
 <!-- App Bottom Menu -->
 <div class="appBottomMenu">
-    <a href="/dashboard" class="item {{ request()->is('dashboard') ? 'active' : '' }}">
+    <a href="/home" class="item {{ request()->is('home') ? 'active' : '' }}">
         <div class="col">
             <ion-icon name="home-outline"></ion-icon>
             <strong>Home</strong>
         </div>
     </a>
-    <a href="/presensi/histori" class="item {{ request()->is('presensi/histori') ? 'active' : '' }}">
+    {{-- TODO: Ubah Menjadi Siswa Auth --}}
+    <a href="#" class="item">
         <div class="col">
-            <ion-icon name="document-text-outline" role="img" class="md hydrated" aria-label="document text outline">
-            </ion-icon>
-            <strong>Histori</strong>
+            <ion-icon name="camera-outline"></ion-icon>
+            <strong>Absen</strong>  
         </div>
     </a>
-    {{-- TODO: Ubah Menjadi Siswa Auth --}}
     {{-- @if (Auth::guard('karyawan')->user()->status_jam_kerja == 1)
         <a href="/presensi/null/create" class="item {{ request()->is('presensi/null/create') ? 'active' : '' }}">
             <div class="col">
@@ -29,18 +28,12 @@
             </div>
         </a>
     @endif --}}
-
-    {{-- <a href="/presensi/izin" class="item {{ request()->is('presensi/izin') ? 'active' : '' }}">
+    <a href="/presensi/histori" class="item {{ request()->is('presensi/histori') ? 'active' : '' }}">
         <div class="col">
-            <ion-icon name="calendar-outline"></ion-icon>
-            <strong>Izin</strong>
+            <ion-icon name="document-text-outline" role="img" class="md hydrated" aria-label="document text outline">
+            </ion-icon>
+            <strong>Histori</strong>
         </div>
-    </a> --}}
-    {{-- <a href="/editprofile" class="item {{ request()->is('editprofile') ? 'active' : '' }}">
-        <div class="col">
-            <ion-icon name="people-outline" role="img" class="md hydrated" aria-label="people outline"></ion-icon>
-            <strong>Profile</strong>
-        </div>
-    </a> --}}
+    </a>
 </div>
 <!-- * App Bottom Menu -->

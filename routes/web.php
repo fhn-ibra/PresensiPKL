@@ -38,6 +38,9 @@ Route::group(['middleware' => ['guru']], function(){
 //----------Siswa Route----------
 Route::group(['middleware' => ['siswa']], function(){
     Route::get('/home', [SiswaController::class, 'index']);
+    Route::get('/create', function(){
+        return view('Siswa.create');
+    });
 });
 //----------Siswa Route----------
 
