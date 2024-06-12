@@ -172,11 +172,11 @@
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                     aria-label="Open user menu">
                     <div class="d-none d-xl-block ps-2">
-                        <!-- Ambil Nama Guru dari Database -->
+                       {{ Auth::user()->nama }}
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <a href="/proseslogoutadmin" class="dropdown-item">Logout</a>
+                    <a href="/logout" class="dropdown-item">Logout</a>
                 </div>
             </div>
         </div>

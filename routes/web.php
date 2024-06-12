@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\GuruController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,37 +31,22 @@ Route::group(['middleware' => ['auth']], function(){
 
 //----------Guru Route----------
 Route::group(['middleware' => ['guru']], function(){
-    
+    Route::get('/dashboard', [GuruController::class, 'dashboard'])->name('dashboard');
+    Route::get('/perusahaan', [GuruController::class, 'perusahaan']);
+    Route::get('/siswa', [GuruController::class, 'siswa']);
 });
 //----------Guru Route----------
 
 
 //----------Siswa Route----------
 Route::group(['middleware' => ['siswa']], function(){
-    Route::get('/home', [SiswaController::class, 'index']);
-    Route::get('/create', function(){
-        return view('Siswa.create');
-    });
+    Route::get('/home', [SiswaController::class, 'index'])->name('home');
+    Route::get('/create', [SiswaController::class, 'create']);
 });
 //----------Siswa Route----------
-
-
-
 
 
 //----------Google Route----------
 Route::get('auth/google', [LoginController::class, 'redirectGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
 //----------Google Route----------
-
-Route::get('/test', function(){
-return view('guru.dashboard');
-});
-
-Route::get('/testying', function(){
-    return view('perusahaan.index');
-    });
-
-    Route::get('/testyinng', function(){
-        return view('Siswa.datasiswa');
-        });

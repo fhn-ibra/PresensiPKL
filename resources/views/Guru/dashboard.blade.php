@@ -9,8 +9,7 @@
                     Selamat Datang DI SIAKAD PKL SMK PRESTASI PRIMA
                 </div>
                 <h2 class="page-title">
-                    HALO ....
-                    <!--Kode Ngambil Nama Guru dari database--> MAU CEK APA HARI INI?
+                    Halo, {{ Auth::user()->nama }}
                 </h2>
             </div>
 
@@ -23,7 +22,7 @@
         <div class="row">
 
             <div class="col-md-6 col-xl-6">
-                <a href="your-link-here" class="text-decoration-none">
+                <a href="/siswa" class="text-decoration-none">
                     <div class="card card-sm">
                         <div class="card-body">
                             <div class="row align-items-center">
@@ -58,7 +57,7 @@
             </div>
 
             <div class="col-md-6 col-xl-6">
-                <a href="your-link-here" class="text-decoration-none">
+                <a href="/perusahaan" class="text-decoration-none">
                     <div class="card card-sm">
                         <div class="card-body">
                             <div class="row align-items-center">
