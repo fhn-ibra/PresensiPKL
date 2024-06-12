@@ -61,7 +61,7 @@ button:focus {
     right: 0;
     z-index: 999;
     background: #fff;
-    color: #141515;
+    color: #f39c12;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.08);
 }
 
@@ -74,7 +74,7 @@ button:focus {
     right: 0;
     width: 100%;
     z-index: 99999;
-    background: #1e74fd;
+    background: #f39c12;
 }
 
 .appHeader.no-border {
@@ -232,11 +232,11 @@ button:focus {
 }
 
 .appHeader.scrolled.bg-primary .headerButton {
-    color: #1e74fd;
+    color: #f39c12;
 }
 
 .appHeader.scrolled.bg-primary.is-active {
-    background: #1e74fd !important;
+    background: #f39c12 !important;
 }
 
 .appHeader.scrolled.bg-primary.is-active .headerButton {
@@ -3637,7 +3637,7 @@ a.badge-dark {
 }
 
 .bg-primary {
-    background: #1e74fd !important;
+    background: #f39c12 !important;
     color: #fff;
 }
 
@@ -7998,7 +7998,7 @@ body.dark-mode-active .cart-item .cart-item-footer {
 
 #user-section {
     height: 180px;
-    background-color: #092c9f;
+    background-color: #cf850f;
     padding: 20px;
 }
 
