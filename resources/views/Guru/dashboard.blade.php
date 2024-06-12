@@ -46,7 +46,7 @@
                                     </span>
                                 </div>
                                 <div class="col">
-                                    <div class="text-muted">
+                                    <div class="text-muted-center">
                                         Rekap Siswa
                                     </div>
                                 </div>
