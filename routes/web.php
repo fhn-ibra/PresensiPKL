@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,19 +30,14 @@ Route::group(['middleware' => ['auth']], function(){
 
 //----------Guru Route----------
 Route::group(['middleware' => ['guru']], function(){
+    
 });
 //----------Guru Route----------
-
-Route::get('/home', function(){
-    return view('Siswa.dashboard');
-});
 
 
 //----------Siswa Route----------
 Route::group(['middleware' => ['siswa']], function(){
-    Route::get('/home', function(){
-        return view('Siswa.dashboard');
-    });
+    Route::get('/home', [SiswaController::class, 'index']);
 });
 //----------Siswa Route----------
 
