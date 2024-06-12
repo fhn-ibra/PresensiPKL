@@ -59,6 +59,14 @@
         </div>
     </div>
     {{-- TODO: Fix Jam Digital Untuk Timestamp --}}
+    <div class="jam-digital-malasngoding">
+        <p>12/06/2024</p>
+        <p id="jam"></p>
+        <p>Mulai : 07.00</p>
+        <p>Masuk : 07.30</p>
+        <p>Akhir : 16.00</p>
+        <p>Pulang : 16.30</p>
+    </div>
     {{-- <div class="jam-digital-malasngoding">
         <p>{{ $hariini }}</p>
         <p id="jam"></p>
@@ -146,11 +154,9 @@
         function successCallback(position) {
             lokasi.value = position.coords.latitude + "," + position.coords.longitude;
             var map = L.map('map').setView([position.coords.latitude, position.coords.longitude], 18);
-            var lokasi_kantor = "{{ $lok_kantor->lokasi_cabang }}";
             var lok = lokasi_kantor.split(",");
             var lat_kantor = lok[0];
             var long_kantor = lok[1];
-            var radius = "{{ $lok_kantor->radius_cabang }}";
             L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
                 maxZoom: 20,
                 subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
@@ -180,8 +186,7 @@
                     _token: "{{ csrf_token() }}",
                     image: image,
                     lokasi: lokasi,
-                    kode_jam_kerja: "{{ $kode_jam_kerja }}"
-                },
+                 },
                 cache: false,
                 success: function(respond) {
                     var status = respond.split("|");
