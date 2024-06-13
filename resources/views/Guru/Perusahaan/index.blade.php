@@ -33,7 +33,7 @@
         <div class="row">
 
             <div class="col-md-6 col-xl-2">
-                <a href="your-link-here" class="text-decoration-none">
+                <a href="/detail" class="text-decoration-none">
                     <div class="card card-sm">
                         <div class="card-body">
                             <div class="row align-items-center">

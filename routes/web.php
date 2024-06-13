@@ -34,6 +34,8 @@ Route::group(['middleware' => ['guru']], function(){
     Route::get('/dashboard', [GuruController::class, 'dashboard'])->name('dashboard');
     Route::get('/perusahaan', [GuruController::class, 'perusahaan']);
     Route::get('/siswa', [GuruController::class, 'siswa']);
+    Route::get('/detail', [GuruController::class, 'detail']);
+
 });
 //----------Guru Route----------
 
