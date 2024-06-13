@@ -37,7 +37,7 @@ class GuruController extends Controller
         return redirect('/perusahaan');
     }
     public function detail(){
-        return view('Guru.Perusahaan.detail');
+        return view('Guru.Perusahaan.detail', ['title' => 'Detail Perusahaan']);
     }
     
 

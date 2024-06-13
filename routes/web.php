@@ -39,6 +39,10 @@ Route::group(['middleware' => ['guru']], function(){
 
     Route::get('/siswa', [GuruController::class, 'siswa']);
     Route::get('/detail', [GuruController::class, 'detail']);
+
+    Route::get('/guru', function(){
+        return view('Guru.tambahguru', ['title' => 'Guru']);
+    });
 });
 //----------Guru Route----------
 
