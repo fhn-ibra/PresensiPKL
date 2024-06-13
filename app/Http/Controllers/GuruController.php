@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Perusahaan;
 use App\Models\Guru;
 use App\Models\Siswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class GuruController extends Controller
@@ -50,16 +51,35 @@ class GuruController extends Controller
 
     public function siswa(){
         $data = [
-            'title' => 'Rekap Siswa'
+            'title' => 'Rekap Absensi',
+            'siswa' => Siswa::all(),
+            'perusahaan' => Perusahaan::all()
         ];
+
+        
         return view('Guru.siswa', $data);
     }
 
     public function guru(){
         $data = [
             'title' => 'Guru',
-            'guru' => Guru::all()
+            'guru' => Guru::all()->sortBy('nama')
         ];
         return view('Guru.guru', $data);
+    }
+
+    public function addGuru(Request $request){
+        $user = new User();
+        $user->nama = $request->nama;
+        $user->email = $request->email;
+        $user->level = 'guru';
+        $user->save();
+
+        $guru = new Guru();
+        $guru->id_user = $user->id;
+        $guru->nohp = $request->nohp;
+        $guru->save();
+
+        return redirect('/guru')->with(['success' => 'Data Guru Berhasil Dibuat']);
     }
 }

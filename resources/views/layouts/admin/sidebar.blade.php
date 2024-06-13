@@ -71,7 +71,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $title == 'Rekap Siswa' ? 'active' : '' }}" href="/siswa">
+                    <a class="nav-link {{ $title == 'Rekap Absensi' ? 'active' : '' }}" href="/siswa">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -89,12 +89,12 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Rekap Siswa
+                            Rekap Absensi
                         </span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/perusahaan">
+                    <a class="nav-link {{ $title == 'Perusahaan' ? 'active' : '' }}" href="/perusahaan">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -116,7 +116,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/guru">
+                    <a class="nav-link {{ $title == 'Guru' ? 'active' : '' }}" href="/guru">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24"
                                 height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"

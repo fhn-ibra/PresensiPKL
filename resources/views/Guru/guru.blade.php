@@ -24,17 +24,11 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                {{-- @if (Session::get('success'))
+                                @if (Session::get('success'))
                                 <div class="alert alert-success">
                                     {{ Session::get('success') }}
                                 </div>
-                                @endif --}}
-
-                                {{-- @if (Session::get('warning'))
-                                <div class="alert alert-warning">
-                                    {{ Session::get('warning') }}
-                                </div>
-                                @endif --}}
+                                @endif
                             </div>
                         </div>
 
@@ -42,13 +36,11 @@
                             <div class="col-12">
                                 <form action="/guru" method="GET">
                                     <div class="row">
-
                                         <div class="col-2">
                                             <div class="form-group">
-
                                                 <div class="col-6 text-end">
                                                     <div class="col-12">
-                                                        <a href="#" class="btn btn-primary" id="btnTambahCabang">
+                                                        <a href="#" class="btn btn-primary mb-3" id="btnTambahCabang">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                 class="icon icon-tabler icon-tabler-plus" width="24"
                                                                 height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -82,14 +74,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php
+                                        $no = 1;
+                                        @endphp
 
+                                        @foreach ($guru as $item)
                                         <tr>
-                                            {{-- TODO: Ubah Kolom Sesuai Line 119 --}}
-                                            <td>1</td>
-                                            <td>Sir Erlangga</td>
-                                            <td>Erlanggagantengbangetcuy@gmail.com </td>
-                                            <td>085155277080 </td>
-
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $item->user->nama }}</td>
+                                            <td>{{ $item->user->email }}</td>
+                                            <td>{{ $item->nohp }}</td>
+                                        </tr>
+                                        @endforeach
 
                                     </tbody>
                                 </table>
@@ -130,27 +126,8 @@
                                         <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                                     </svg>
                                 </span>
-                                <input required type="text" id="Namagr" class="form-control" name="Namagr"
+                                <input required type="text" class="form-control" name="nama"
                                     placeholder="Nama Guru">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="input-icon mb-3">
-                                <span class="input-icon-addon">
-                                    <!-- Download SVG icon from http://tabler-icons.io/i/user -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="icon icon-tabler icons-tabler-outline icon-tabler-brand-whatsapp">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
-                                        <path
-                                            d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
-                                    </svg>
-                                </span>
-                                <input required type="text" class="form-control" name="no_guru" placeholder="No Guru">
                             </div>
                         </div>
                     </div>
@@ -170,7 +147,26 @@
                                         <path d="M4 6.5l8 7.5l8 -7.5" />
                                     </svg>
                                 </span>
-                                <input required type="text" class="form-control" name="gmail" placeholder="Gmail Guru">
+                                <input required type="text" class="form-control" name="email" placeholder="Email Guru">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="icon icon-tabler icons-tabler-outline icon-tabler-brand-whatsapp">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+                                        <path
+                                            d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+                                    </svg>
+                                </span>
+                                <input required type="text" class="form-control" name="nohp" placeholder="No Guru">
                             </div>
                         </div>
                     </div>
@@ -205,51 +201,6 @@
 $(function() {
     $("#btnTambahCabang").click(function() {
         $("#modal-inputcabang").modal("show");
-    });
-
-
-
-    $("#frmCabang").submit(function() {
-        var Namagr = $("#Namagr").val();
-        var no_guru = $("#no_guru").val();
-        var gmail = $("#gmail").val();
-
-
-        if (Namagr == "") {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Nama Guru Harus Diisi!',
-                icon: 'warning',
-                confirmButtonText: 'Ok'
-            }).then((result) => {
-                $("#Namagr").focus();
-            });
-
-            return false;
-        } else if (no_guru == "") {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Nomor Guru Harus Diisi !',
-                icon: 'warning',
-                confirmButtonText: 'Ok'
-            }).then((result) => {
-                $("#no_guru").focus();
-            });
-
-            return false;
-        } else if (gmail == "") {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Gmail Guru Harus Diisi !',
-                icon: 'warning',
-                confirmButtonText: 'Ok'
-            }).then((result) => {
-                $("#gmail").focus();
-            });
-
-            return false;
-
-        }
     });
 });
 </script>

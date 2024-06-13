@@ -10,7 +10,10 @@
                 </div>
                 <h2 class="page-title">
                     Data Siswa
-                </h2>
+                    </h2>
+                        <div class="page-pretitle">
+                            Tanggal wfae9929
+                        </div>
             </div>
 
         </div>
@@ -43,30 +46,44 @@
                                 <form action="/karyawan" method="GET">
                                     <div class="row">
 
-                                        <div class="col-5">
+                                        <div class="col-2">
                                             <div class="form-group">
                                                 <select name="kode_dept" id="kode_dept" class="form-select">
-                                                    <option value="">Kelas</option>
-                                                    <!-- foreach -->
-                                                    <!-- ganti kelas jadi variabel lain -->
-                                                    <option>
-                                                        <!--Request variabel lain menjadi kelas dan manggil nama kelas script di tulis di dalem option-->
-                                                    </option>
-
-                                                    <!-- endforeach -->
+                                                    <option value="">Semua Kelas</option>
+                                                    <option value="XI BCF 1">XI BCF 1</option>
+                                                    <option value="XI BCF 2">XI BCF 2</option>
+                                                    <option value="XI DKV 1">XI DKV 1</option>
+                                                    <option value="XI DKV 2">XI DKV 2</option>
+                                                    <option value="XI DKV 3">XI DKV 3</option>
+                                                    <option value="XI PPLG 1">XI PPLG 1</option>
+                                                    <option value="XI PPLG 2">XI PPLG 2</option>
+                                                    <option value="XI PPLG 3">XI PPLG 3</option>
+                                                    <option value="XI TKJT 1">XI TKJT 1</option>
+                                                    <option value="XI TKJT 2">XI TKJT 2</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-5">
+                                        <div class="col-4">
                                             <div class="form-group">
                                                 <select name="kode_cabang" id="kode_cabang" class="form-select">
-                                                    <option value="">Perusahaan</option>
+                                                    <option value="">Semua Perusahaan</option>
+                                                    @foreach ($perusahaan as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <select name="kode_dept" id="kode_dept" class="form-select">
+                                                    <option value="" selected>Hari Ini</option>
+                                                    <option value="7">Juli</option>
+                                                    <option value="8">Agustus</option>
+                                                    <option value="9">September</option>
+                                                    <option value="10">Oktober</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">Desember</option>
                                                     <!-- foreach -->
-                                                    <!-- ganti perusahaan jadi variabel lain -->
-                                                    <option>
-                                                        <!--Request variabel lain menjadi kelas dan manggil nama perusahaan script di tulis di dalem option-->
-                                                    </option>
-
                                                     <!-- endforeach -->
                                                 </select>
                                             </div>
@@ -85,7 +102,7 @@
                                                     </svg>
                                                     Cari
                                                 </button>
-                                                <button type="submit" class="btn btn-warning">
+                                                <button type="submit" class="btn btn-success">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -97,7 +114,7 @@
                                                         <path
                                                             d="M7 13m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z" />
                                                     </svg>
-                                                    Print
+                                                    Excel
                                                 </button>
                                             </div>
                                         </div>
@@ -169,7 +186,7 @@
                                             <td> XI PPLG 3 </td>
                                             <td> INDI Technology </td>
                                             <td> Sir Ridwan </td>
-                                            <td> Hadir </td>
+                                            <td> <span class="badge bg-green-lt">Hadir</span></td>
                                             <td> 07.30</td>
                                             <td> ... </td>
                                             <td> 16.00</td>

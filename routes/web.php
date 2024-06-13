@@ -40,6 +40,7 @@ Route::group(['middleware' => ['guru']], function(){
     Route::get('/siswa', [GuruController::class, 'siswa']);
 
     Route::get('/guru', [GuruController::class, 'guru']);
+    Route::post('/guru', [GuruController::class, 'addGuru']);
 });
 //----------Guru Route----------
 
