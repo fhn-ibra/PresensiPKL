@@ -28,7 +28,7 @@
             </div>
         </a>
     @endif --}}
-    <a href="/presensi/histori" class="item {{ request()->is('presensi/histori') ? 'active' : '' }}">
+    <a href="/histori" class="item {{ request()->is('presensi/histori') ? 'active' : '' }}">
         <div class="col">
             <ion-icon name="document-text-outline" role="img" class="md hydrated" aria-label="document text outline">
             </ion-icon>

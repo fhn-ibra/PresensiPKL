@@ -1,4 +1,5 @@
 @extends('layouts.admin.tabler')
+
 @section('content')
 <div class="page-header d-print-none">
     <div class="container-xl">
@@ -6,7 +7,7 @@
             <div class="col">
                 <!-- Page pre-title -->
                 <div class="page-pretitle">
-                    Selamat Datang DI SIAKAD PKL SMK PRESTASI PRIMA
+                    SIAKAD PKL SMK PRESTASI PRIMA
                 </div>
                 <h2 class="page-title">
                     PERUSAHAAN
@@ -32,6 +33,7 @@
 
         <div class="row">
 
+            @foreach($perusahaan as $item)
             <div class="col-md-6 col-xl-2">
                 <a href="/detail" class="text-decoration-none">
                     <div class="card card-sm">
@@ -57,7 +59,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="text-muted">
-                                        Perusahaan
+                                        {{ $item->nama }}
                                     </div>
                                 </div>
                             </div>
@@ -65,6 +67,7 @@
                     </div>
                 </a>
             </div>
+            @endforeach
 
 
 
@@ -79,126 +82,125 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- <form action="perusahaan" method="POST" id="frmCabang"> -->
-                @csrf
-                <div class="row">
-                    <div class="col-12">
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/user -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-building-skyscraper">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M3 21l18 0" />
-                                    <path d="M5 21v-14l8 -4v18" />
-                                    <path d="M19 21v-10l-6 -4" />
-                                    <path d="M9 9l0 .01" />
-                                    <path d="M9 12l0 .01" />
-                                    <path d="M9 15l0 .01" />
-                                    <path d="M9 18l0 .01" />
-                                </svg>
-                            </span>
-                            <input type="text" value="" id="nama_perusahaan" class="form-control"
-                                placeholder="Nama Perusahaan" name="nama_perusahaan">
+                <form action="/perusahaan" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="icon icon-tabler icons-tabler-outline icon-tabler-building-skyscraper">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M3 21l18 0" />
+                                        <path d="M5 21v-14l8 -4v18" />
+                                        <path d="M19 21v-10l-6 -4" />
+                                        <path d="M9 9l0 .01" />
+                                        <path d="M9 12l0 .01" />
+                                        <path d="M9 15l0 .01" />
+                                        <path d="M9 18l0 .01" />
+                                    </svg>
+                                </span>
+                                <input required type="text" value="" id="nama_perusahaan" class="form-control"
+                                    placeholder="Nama Perusahaan" name="nama_perusahaan">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/user -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-map-2">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M12 18.5l-3 -1.5l-6 3v-13l6 -3l6 3l6 -3v7.5" />
-                                    <path d="M9 4v13" />
-                                    <path d="M15 7v5.5" />
-                                    <path
-                                        d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" />
-                                    <path d="M19 18v.01" />
-                                </svg>
-                            </span>
-                            <input type="text" id="alamat_perusahaan" value="" class="form-control"
-                                name="alamat_perusahaan" placeholder="Alamat Perusahaan">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="icon icon-tabler icons-tabler-outline icon-tabler-map-2">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M12 18.5l-3 -1.5l-6 3v-13l6 -3l6 3l6 -3v7.5" />
+                                        <path d="M9 4v13" />
+                                        <path d="M15 7v5.5" />
+                                        <path
+                                            d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" />
+                                        <path d="M19 18v.01" />
+                                    </svg>
+                                </span>
+                                <input required type="text" id="alamat_perusahaan" value="" class="form-control"
+                                    name="alamat_perusahaan" placeholder="Alamat Perusahaan">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/user -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user"
-                                    width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
-                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                                </svg>
-                            </span>
-                            <input type="text" id="pj_perusahaan" value="" class="form-control" name="pj_perusahaan"
-                                placeholder="Nama Penanggung Jawab Perusahaan">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user"
+                                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                    </svg>
+                                </span>
+                                <input required type="text" id="pj_perusahaan" class="form-control" name="pj_perusahaan"
+                                    placeholder="Nama Penanggung Jawab Perusahaan">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/user -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-brand-whatsapp">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
-                                    <path
-                                        d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
-                                </svg>
-                            </span>
-                            <input type="text" id="no_pj" value="" class="form-control" name="no_pj"
-                                placeholder="No Telp Penanggung Jawab">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="icon icon-tabler icons-tabler-outline icon-tabler-brand-whatsapp">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+                                        <path
+                                            d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+                                    </svg>
+                                </span>
+                                <input required type="text" class="form-control" name="no_pj"
+                                    placeholder="No Telp Penanggung Jawab">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12">
+                    <div class="col-12">
 
-                    <div class="form-group">
-
-                        <select name="Guru" id="Guru" class="form-select">
-
-                            <option value="">Nama Guru</option>
-                            <!-- foreach (syantax nama guru)) -->
-                            <option>
-                                <!--Option Guru-->
-                            </option>
-                            <!-- endforeach -->
-                        </select>
-                    </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-12">
                         <div class="form-group">
-                            <button class="btn btn-primary w-100 mt-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send"
-                                    width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M10 14l11 -11"></path>
-                                    <path
-                                        d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5">
-                                    </path>
-                                </svg>
-                                Simpan
-                            </button>
+
+                            <select name="guru" class="form-select" required>
+                                <option value="" selected disabled>Nama Guru</option>
+                                @foreach ($guru as $item)
+                                <option value="{{ $item->id }}">{{ $item->user->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <button class="btn btn-primary w-100 mt-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send"
+                                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M10 14l11 -11"></path>
+                                        <path
+                                            d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5">
+                                        </path>
+                                    </svg>
+                                    Simpan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
 

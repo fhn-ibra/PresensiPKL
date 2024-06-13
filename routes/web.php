@@ -18,7 +18,7 @@ use App\Http\Controllers\GuruController;
 
 //----------Guest Route----------
 Route::group(['middleware' => ['guest']], function(){
-    Route::get('/', [LoginController::class, 'index']);
+    Route::get('/', [LoginController::class, 'index'])->name('login');
 });
 //----------Guest Route----------
 
@@ -32,9 +32,16 @@ Route::group(['middleware' => ['auth']], function(){
 //----------Guru Route----------
 Route::group(['middleware' => ['guru']], function(){
     Route::get('/dashboard', [GuruController::class, 'dashboard'])->name('dashboard');
+
     Route::get('/perusahaan', [GuruController::class, 'perusahaan']);
+    Route::post('/perusahaan', [GuruController::class, 'addPerusahaan']);
+    Route::get('/perusahaan/{id}', [GuruController::class, 'detailPerusahaan']);
+
     Route::get('/siswa', [GuruController::class, 'siswa']);
+<<<<<<< HEAD
     Route::get('/detail', [GuruController::class, 'detail']);
+=======
+>>>>>>> 2ea19b59da3bbe53984f4324f9ba83b9118d2c54
 
 });
 //----------Guru Route----------
@@ -44,6 +51,9 @@ Route::group(['middleware' => ['guru']], function(){
 Route::group(['middleware' => ['siswa']], function(){
     Route::get('/home', [SiswaController::class, 'index'])->name('home');
     Route::get('/create', [SiswaController::class, 'create']);
+    Route::get('/histori', function(){
+        return view('Siswa.histori');
+    });
 });
 //----------Siswa Route----------
 
