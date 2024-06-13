@@ -35,14 +35,11 @@ Route::group(['middleware' => ['guru']], function(){
 
     Route::get('/perusahaan', [GuruController::class, 'perusahaan']);
     Route::post('/perusahaan', [GuruController::class, 'addPerusahaan']);
-    Route::get('/perusahaan/{id}', [GuruController::class, 'detailPerusahaan']);
+    Route::get('/perusahaan/{id}', [GuruController::class, 'detail']);
 
     Route::get('/siswa', [GuruController::class, 'siswa']);
-    Route::get('/detail', [GuruController::class, 'detail']);
 
-    Route::get('/guru', function(){
-        return view('Guru.tambahguru', ['title' => 'Guru']);
-    });
+    Route::get('/guru', [GuruController::class, 'guru']);
 });
 //----------Guru Route----------
 

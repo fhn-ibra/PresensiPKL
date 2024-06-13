@@ -6,7 +6,7 @@
             <div class="col">
                 <!-- Page pre-title -->
                 <div class="page-pretitle">
-                    Selamat Datang DI SIAKAD PKL SMK PRESTASI PRIMA
+                    SIAKAD PKL SMK PRESTASI PRIMA
                 </div>
                 <h2 class="page-title">
                     Halo, {{ Auth::user()->nama }}

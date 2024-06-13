@@ -6,7 +6,7 @@
             <div class="col">
                 <!-- Page pre-title -->
                 <div class="page-pretitle">
-                    Selamat datang di page rekap data siswa
+                    SIAKAD PKL SMK PRESTASI PRIMA
                 </div>
                 <h2 class="page-title">
                     Data Guru
@@ -24,17 +24,17 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                @if (Session::get('success'))
+                                {{-- @if (Session::get('success'))
                                 <div class="alert alert-success">
                                     {{ Session::get('success') }}
                                 </div>
-                                @endif
+                                @endif --}}
 
-                                @if (Session::get('warning'))
+                                {{-- @if (Session::get('warning'))
                                 <div class="alert alert-warning">
                                     {{ Session::get('warning') }}
                                 </div>
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
 

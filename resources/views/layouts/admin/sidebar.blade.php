@@ -5,10 +5,10 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <h1 class="navbar-brand navbar-brand-autodark">
-            <a href=".">
+            <a href="/" style="text-decoration: none">
                 <!-- <img src="{{ asset('tabler/static/logo-white.svg') }}" width="420" height="420" alt="Tabler"
                     class="navbar-brand-image"> -->
-                <h2>PRESENSI PKL </h2>
+                <h2>PRESENSI PKL</h2>
             </a>
 
         </h1>
@@ -42,20 +42,19 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                     aria-label="Open user menu">
-                    <div class="d-none d-xl-block ps-2">
-                        <!--Script Nama Akun Taro Sini-->
-                    </div>
+                    {{ Auth::user()->nama }}
+                   
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <div class="dropdown-divider"></div>
-                    <a href="./sign-in.html" class="dropdown-item">Logout</a>
+                    <a href="/logout" class="dropdown-item">Logout</a>
                 </div>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="sidebar-menu">
             <ul class="navbar-nav pt-lg-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="/dashboard">
+                    <a class="nav-link {{ $title == 'Dashboard' ? 'active' : '' }}" href="/dashboard">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -67,12 +66,12 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Home
+                            Dashboard
                         </span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/siswa">
+                    <a class="nav-link {{ $title == 'Rekap Siswa' ? 'active' : '' }}" href="/siswa">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"

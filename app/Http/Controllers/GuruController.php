@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Perusahaan;
 use App\Models\Guru;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class GuruController extends Controller
@@ -36,8 +37,14 @@ class GuruController extends Controller
 
         return redirect('/perusahaan');
     }
-    public function detail(){
-        return view('Guru.Perusahaan.detail', ['title' => 'Detail Perusahaan']);
+    public function detail($id){
+        $data = [
+            'title' => Perusahaan::find($id)->value('nama'),
+            'perusahaan' => Perusahaan::find($id),
+            'siswa' => Siswa::where('id_perusahaan', $id)->get()
+        ];
+
+        return view('Guru.Perusahaan.detail', $data);
     }
     
 
@@ -45,10 +52,14 @@ class GuruController extends Controller
         $data = [
             'title' => 'Rekap Siswa'
         ];
-        return view('Guru.datasiswa', $data);
+        return view('Guru.siswa', $data);
     }
 
-    public function detailPerusahaan($id){
-        dd(Perusahaan::find($id));
+    public function guru(){
+        $data = [
+            'title' => 'Guru',
+            'guru' => Guru::all()
+        ];
+        return view('Guru.guru', $data);
     }
 }

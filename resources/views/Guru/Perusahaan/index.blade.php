@@ -35,7 +35,7 @@
 
             @foreach($perusahaan as $item)
             <div class="col-md-6 col-xl-2">
-                <a href="/detail" class="text-decoration-none">
+                <a href="/perusahaan/{{ $item->id }}" class="text-decoration-none">
                     <div class="card card-sm">
                         <div class="card-body">
                             <div class="row align-items-center">
