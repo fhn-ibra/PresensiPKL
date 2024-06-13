@@ -49,13 +49,22 @@ class GuruController extends Controller
     }
     
 
-    public function siswa(){
+    public function siswa(Request $request){
+        
+        if($request->kelas == null && $request->perusahaan == null && $request->filter == null){
+            $siswa = Siswa::all();
+        } else {
+            $siswa = [];
+        }
+
         $data = [
             'title' => 'Rekap Absensi',
-            'siswa' => Siswa::all(),
-            'perusahaan' => Perusahaan::all()
+            'siswa' => $siswa,
+            'perusahaan' => Perusahaan::all(),
+            'reqkelas' => $request->kelas,
+            'reqperusahaan' => $request->perusahaan,
+            'reqfilter' => $request->filter
         ];
-
         
         return view('Guru.siswa', $data);
     }

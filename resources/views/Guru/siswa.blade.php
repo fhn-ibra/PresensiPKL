@@ -43,48 +43,47 @@
 
                         <div class="row mt-2">
                             <div class="col-12">
-                                <form action="/karyawan" method="GET">
+                                <form method="GET">
                                     <div class="row">
 
                                         <div class="col-2">
                                             <div class="form-group">
-                                                <select name="kode_dept" id="kode_dept" class="form-select">
+                                                
+                                                <select name="kelas" class="form-select">
                                                     <option value="">Semua Kelas</option>
-                                                    <option value="XI BCF 1">XI BCF 1</option>
-                                                    <option value="XI BCF 2">XI BCF 2</option>
-                                                    <option value="XI DKV 1">XI DKV 1</option>
-                                                    <option value="XI DKV 2">XI DKV 2</option>
-                                                    <option value="XI DKV 3">XI DKV 3</option>
-                                                    <option value="XI PPLG 1">XI PPLG 1</option>
-                                                    <option value="XI PPLG 2">XI PPLG 2</option>
-                                                    <option value="XI PPLG 3">XI PPLG 3</option>
-                                                    <option value="XI TKJT 1">XI TKJT 1</option>
-                                                    <option value="XI TKJT 2">XI TKJT 2</option>
+                                                    <option value="XI BCF 1" {{ $reqkelas == 'XI BCF 1' ? 'selected' : '' }}>XI BCF 1</option>
+                                                    <option value="XI BCF 2" {{ $reqkelas == 'XI BCF 2' ? 'selected' : '' }}>XI BCF 2</option>
+                                                    <option value="XI DKV 1" {{ $reqkelas == 'XI DKV 1' ? 'selected' : '' }}>XI DKV 1</option>
+                                                    <option value="XI DKV 2" {{ $reqkelas == 'XI DKV 2' ? 'selected' : '' }}>XI DKV 2</option>
+                                                    <option value="XI DKV 3" {{ $reqkelas == 'XI DKV 3' ? 'selected' : '' }}>XI DKV 3</option>
+                                                    <option value="XI PPLG 1" {{ $reqkelas == 'XI PPLG 1' ? 'selected' : '' }}>XI PPLG 1</option>
+                                                    <option value="XI PPLG 2" {{ $reqkelas == 'XI PPLG 2' ? 'selected' : '' }}>XI PPLG 2</option>
+                                                    <option value="XI PPLG 3" {{ $reqkelas == 'XI PPLG 3' ? 'selected' : '' }}>XI PPLG 3</option>
+                                                    <option value="XI TKJT 1" {{ $reqkelas == 'XI TKJT 1' ? 'selected' : '' }}>XI TKJT 1</option>
+                                                    <option value="XI TKJT 2" {{ $reqkelas == 'XI TKJT 2' ? 'selected' : '' }}>XI TKJT 2</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="form-group">
-                                                <select name="kode_cabang" id="kode_cabang" class="form-select">
+                                                <select name="perusahaan" class="form-select">
                                                     <option value="">Semua Perusahaan</option>
                                                     @foreach ($perusahaan as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                    <option value="{{ $item->id }}" {{ $reqperusahaan == $item->id ? 'selected' : '' }}>{{ $item->nama }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="form-group">
-                                                <select name="kode_dept" id="kode_dept" class="form-select">
-                                                    <option value="" selected>Hari Ini</option>
-                                                    <option value="7">Juli</option>
-                                                    <option value="8">Agustus</option>
-                                                    <option value="9">September</option>
-                                                    <option value="10">Oktober</option>
-                                                    <option value="11">November</option>
-                                                    <option value="12">Desember</option>
-                                                    <!-- foreach -->
-                                                    <!-- endforeach -->
+                                                <select name="filter" class="form-select">
+                                                    <option value="">Hari Ini</option>
+                                                    <option value="7" {{ $reqfilter == '7' ? 'selected' : ''}}>Juli</option>
+                                                    <option value="8" {{ $reqfilter == '8' ? 'selected' : ''}}>Agustus</option>
+                                                    <option value="9" {{ $reqfilter == '9' ? 'selected' : ''}}>September</option>
+                                                    <option value="10" {{ $reqfilter == '10' ? 'selected' : ''}}>Oktober</option>
+                                                    <option value="11" {{ $reqfilter == '11' ? 'selected' : ''}}>November</option>
+                                                    <option value="12" {{ $reqfilter == '12' ? 'selected' : ''}}>Desember</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -142,7 +141,7 @@
                                                     <path d="M9 12l0 .01" />
                                                     <path d="M9 15l0 .01" />
                                                     <path d="M9 18l0 .01" />
-                                                </svg>Nama Perusahaan</th>
+                                                </svg> Nama Perusahaan</th>
                                             <th>Guru Pembimbing</th>
                                             <th>Status</th>
                                             <th> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -179,20 +178,23 @@
                                     </thead>
                                     <tbody>
 
+                                        @php $no = 1; @endphp
+
+                                        @foreach($siswa as $item)
                                         <tr>
-                                            {{-- TODO: Ubah Kolom Sesuai Line 119 --}}
-                                            <td>1</td>
-                                            <td>Erlangga Tamvan 150 cc </td>
-                                            <td> XI PPLG 3 </td>
-                                            <td> INDI Technology </td>
-                                            <td> Sir Ridwan </td>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $item->user->nama }}</td>
+                                            <td>{{ $item->kelas }}</td>
+                                            <td>{{ $item->perusahaan->nama }}</td>
+                                            <td>{{ $item->perusahaan->guru->user->nama }}</td>
                                             <td> <span class="badge bg-green-lt">Hadir</span></td>
                                             <td> 07.30</td>
                                             <td> ... </td>
                                             <td> 16.00</td>
                                             <td> ...</td>
                                             <td> - </td>
-
+                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                                 <!-- next pagination -->
