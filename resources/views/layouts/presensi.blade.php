@@ -62,7 +62,7 @@
     <!-- App Capsule -->
     <div id="appCapsule">
         @yield('content')
-    </div>
+    </div>  
     <!-- * App Capsule -->
 
 

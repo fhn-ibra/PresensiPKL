@@ -40,19 +40,27 @@
     }
 
     table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
     }
 
     td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
     }
 
     tr:nth-child(even) {
-    background-color: #dddddd;
+        background-color: #dddddd;
+    }
+
+    .hadir {
+        color: green;
+    }
+
+    .tidak-hadir {
+        color: red;
     }
     </style>
 @endsection
@@ -107,12 +115,12 @@
         <tr>
           <td>1</td>
           <td>12-06-2024</td>
-          <td>Hadir</td>
+          <td class="{{ 'Hadir' == 'Hadir' ? 'hadir' : 'tidak-hadir' }}">Hadir</td>
         </tr>
         <tr>
           <td>2</td>
           <td>13-06-2024</td>
-          <td>Tidak Hadir</td>
+          <td class="{{ 'Tidak Hadir' == 'Hadir' ? 'hadir' : 'tidak-hadir' }}">Tidak Hadir</td>
         </tr>
       </table>
     <div class="row mt-2" style="position: fixed; width:100%; margin:auto; overflow-y:scroll; height:430px">

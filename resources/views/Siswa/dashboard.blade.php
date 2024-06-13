@@ -62,12 +62,12 @@
             </div>
         </div>
     </div>
-    <div class="section mt-2" id="presence-section">
+    <div class="section mt-2" id="presence-section" style="">
         <div class="todaypresence">
             <div class="row">
 
                 <div class="col-12">
-                    <div class="card gradasigreen" style="margin-bottom: 20px">
+                    <div class="card gradasigreen" style="margin-bottom: 20px; margin-top: 50px">
                         <div class="card-body">
                             <div class="presencecontent">
                                 {{-- TODO: Ubah Menjadi Presensi Hadir Siswa --}}
