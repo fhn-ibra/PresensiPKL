@@ -34,7 +34,7 @@
         <div id="user-detail" style="margin-top: 55px">
             <div id="user-info">
                 {{-- TODO: Ubah menjadi Info Siswa --}}
-                <h3 id="user-name">Revaldo Parikesit</h3>
+                <h3 id="user-name">{{ Auth::user()->nama }}</h3>
                 <span id="user-role">XI PPLG 3</span>
                 <p style="margin-top: 15px">
                     <span id="user-role">PT. Komatsu Marketing And Support</span>

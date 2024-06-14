@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Perusahaan;
+use Carbon\Carbon;
 use App\Models\Guru;
-use App\Models\Siswa;
 use App\Models\User;
+use App\Models\Absen;
+use App\Models\Siswa;
+use App\Models\Perusahaan;
 use Illuminate\Http\Request;
 
 class GuruController extends Controller
@@ -52,14 +54,14 @@ class GuruController extends Controller
     public function siswa(Request $request){
         
         if($request->kelas == null && $request->perusahaan == null && $request->filter == null){
-            $siswa = Siswa::all();
+            $absen = Absen::whereDate('tanggal', Carbon::now('Asia/Jakarta'))->get();
         } else {
             $siswa = [];
         }
 
         $data = [
             'title' => 'Rekap Absensi',
-            'siswa' => $siswa,
+            'absen' => $absen,
             'perusahaan' => Perusahaan::all(),
             'reqkelas' => $request->kelas,
             'reqperusahaan' => $request->perusahaan,

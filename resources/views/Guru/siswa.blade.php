@@ -9,7 +9,7 @@
                     SIAKAD PKL SMK PRESTASI PRIMA
                 </div>
                 <h2 class="page-title">
-                    Data Siswa
+                    Rekap Absensi
                     </h2>
                         <div class="page-pretitle">
                             Tanggal wfae9929
@@ -173,26 +173,29 @@
                                                     <path d="M18 16.5v1.5l.5 .5" />
                                                 </svg> Jam Keluar</th>
                                             <th>Foto</th>
-                                            <th>Keterangan</th>
+                                            <th>Ket.</th>
+                                            <th>Foto Ket.</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         @php $no = 1; @endphp
 
-                                        @foreach($siswa as $item)
+                                        @foreach($absen as $item)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $item->user->nama }}</td>
-                                            <td>{{ $item->kelas }}</td>
-                                            <td>{{ $item->perusahaan->nama }}</td>
-                                            <td>{{ $item->perusahaan->guru->user->nama }}</td>
-                                            <td> <span class="badge bg-green-lt">Hadir</span></td>
-                                            <td> 07.30</td>
-                                            <td> ... </td>
-                                            <td> 16.00</td>
-                                            <td> ...</td>
-                                            <td> - </td>
+                                            <td>{{ $item->siswa->user->nama }}</td>
+                                            <td>{{ $item->siswa->kelas }}</td>
+                                            <td>{{ $item->siswa->perusahaan->nama }}</td>
+                                            <td>{{ $item->siswa->perusahaan->guru->user->nama }}</td>
+                                            <td> <span class="badge bg-{{ $item->status == 'Hadir' ? 'green' : 'red' }}-lt">{{ $item->status }}</span></td>
+                                            <td>{{ $item->jam_masuk }}</td>
+                                            <td><a href="">Lihat {{ $item->foto_masuk }}</a></td>
+                                            {{-- <td>{{ $item->lokasi_masuk }}</td> --}}
+                                            <td>{{ $item->jam_keluar }}</td>
+                                            <td> <a href="">Lihat {{ $item->foto_keluar }}</a></td>
+                                            <td>{{ $item->keterangan }}</td>
+                                            <td><a href="">Lihat</a>{{ $item->foto }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
