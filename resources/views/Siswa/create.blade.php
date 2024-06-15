@@ -58,12 +58,8 @@
     </div>
     {{-- TODO: Fix Jam Digital Untuk Timestamp --}}
     <div class="jam-digital-malasngoding">
-        <p>12/06/2024</p>
+        <p>{{ $hari }}</p>
         <p id="jam"></p>
-        <p>Mulai : 07.00</p>
-        <p>Masuk : 07.30</p>
-        <p>Akhir : 16.00</p>
-        <p>Pulang : 16.30</p>
     </div>
     {{-- <div class="jam-digital-malasngoding">
         <p>{{ $hariini }}</p>
@@ -173,18 +169,33 @@
         }
 
         function successCallback(position) {
+            // var userLatLng = L.latLng(position.coords.latitude, position.coords.longitude); 
+            // var centerLatLng = L.latLng(-6.3670052, 106.9080296); 
+            // var radius = 300; 
+            // var distance = userLatLng.distanceTo(centerLatLng);
+            // if (distance <= radius) {
+            //     console.log("Jarak : " + distance);
+            // } else {
+            //     console.log("Jarak Luar : " + distance);
+            //     Swal.fire({
+            //                 title: 'Error !',
+            //                 text: 'Jarak diluar jangkauan kantor',
+            //                 icon: 'error'
+            //             })
+            // }
             lokasi.value = position.coords.latitude + "," + position.coords.longitude;
+            console.log(lokasi.value)
             var map = L.map('map').setView([position.coords.latitude, position.coords.longitude], 18);
             L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
                 maxZoom: 20,
                 subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
             }).addTo(map);
             var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
-            // var circle = L.circle([lat_kantor, long_kantor], {
+            // var circle = L.circle([-6.3670052, 106.9080280], {
             //     color: 'red',
             //     fillColor: '#f03',
             //     fillOpacity: 0.5,
-            //     radius: radius
+            //     radius: 300
             // }).addTo(map);
         }
 
@@ -199,7 +210,7 @@
             var lokasi = $("#lokasi").val();
             $.ajax({
                 type: 'POST',
-                url: '/presensi/store',
+                url: '/create',
                 data: {
                     _token: "{{ csrf_token() }}",
                     image: image,
@@ -207,29 +218,24 @@
                  },
                 cache: false,
                 success: function(respond) {
-                    var status = respond.split("|");
-                    if (status[0] == "success") {
-                        if (status[2] == "in") {
-                            notifikasi_in.play();
-                        } else {
-                            notifikasi_out.play();
-                        }
-                        Swal.fire({
+                    console.log(respond);
+                    if(respond.absen){
+                           Swal.fire({
                             title: 'Berhasil !',
-                            text: status[1],
+                            text: respond.message,
                             icon: 'success'
-                        })
-                        setTimeout("location.href='/dashboard'", 3000);
-                    } else {
-                        if (status[2] == "radius") {
-                            radius_sound.play();
-                        }
-                        Swal.fire({
+                        })  
+                    } 
+                    if (respond.absen == false) {
+                             Swal.fire({
                             title: 'Error !',
-                            text: status[1],
+                            text: respond.message,
                             icon: 'error'
                         })
                     }
+                },
+                error: (error) => {
+                    console.log(error)
                 }
             });
 

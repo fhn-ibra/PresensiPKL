@@ -49,6 +49,8 @@ Route::group(['middleware' => ['guru']], function(){
 Route::group(['middleware' => ['siswa']], function(){
     Route::get('/home', [SiswaController::class, 'index'])->name('home');
     Route::get('/create', [SiswaController::class, 'create']);
+    Route::post('/create', [SiswaController::class, 'store']);
+    
     Route::get('/histori', function(){
         return view('Siswa.histori');
     });
