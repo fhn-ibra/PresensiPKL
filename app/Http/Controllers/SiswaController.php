@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Storage;
 class SiswaController extends Controller
 {
     public function index(){
-        return view('Siswa.dashboard');
+        $data = [
+            'absen' => Absen::where('id_siswa', Auth::user()->siswa->first()->id)->where('tanggal', Carbon::now()->toDateString())->first()
+        ];
+        return view('Siswa.dashboard', $data);
     }
 
     public function create(){
