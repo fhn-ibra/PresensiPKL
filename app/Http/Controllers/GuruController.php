@@ -52,17 +52,80 @@ class GuruController extends Controller
     
 
     public function siswa(Request $request){
-        
         if($request->kelas == null && $request->perusahaan == null && $request->filter == null){
-            $absen = Absen::whereDate('tanggal', Carbon::now('Asia/Jakarta'))->get();
+            $absen = Absen::whereDate('tanggal', Carbon::now()->toDateString())->with(['siswa' => function ($query) {
+                $query->with('user')->orderBy('kelas')->orderBy(function ($query) {
+                    $query->select('nama')->from('user')->whereColumn('user.id', 'siswa.id_user');
+                });
+            }])->get();
+
+        } elseif ($request->kelas == null && $request->perusahaan == null && $request->filter != null) {
+            $absen = Absen::whereMonth('tanggal', $request->filter)->with(['siswa' => function ($query) {
+                $query->with('user')->orderBy('kelas')->orderBy(function ($query) {
+                    $query->select('nama')->from('user')->whereColumn('user.id', 'siswa.id_user');
+                });
+            }])->get();
+
+        } elseif ($request->kelas == null && $request->perusahaan != null && $request->filter != null){
+            $absen = Absen::whereMonth('tanggal', $request->filter)->whereHas('siswa', function ($query) use ($request) {
+                $query->where('id_perusahaan', $request->perusahaan);
+            })->with(['siswa' => function ($query) {
+                $query->with('user')->orderBy('kelas')->orderBy(function ($query) {
+                    $query->select('nama')->from('user')->whereColumn('user.id', 'siswa.id_user');
+                });
+            }])->get();
+            
+        } elseif ($request->kelas != null && $request->perusahaan == null && $request->filter == null) {
+            $absen = Absen::whereDate('tanggal', Carbon::now()->toDateString())->whereHas('siswa', function ($query) use ($request) {
+                $query->where('kelas', $request->kelas);
+            })->with(['siswa' => function ($query) {
+                $query->with('user')->orderBy('kelas')->orderBy(function ($query) {
+                    $query->select('nama')->from('user')->whereColumn('user.id', 'siswa.id_user');
+                });
+            }])->get();
+
+        } elseif ($request->kelas != null && $request->perusahaan == null && $request->filter != null) {
+            $absen = Absen::whereMonth('tanggal', $request->filter)->whereHas('siswa', function ($query) use ($request) {
+                $query->where('kelas', $request->kelas);
+            })->with(['siswa' => function ($query) {
+                $query->with('user')->orderBy('kelas')->orderBy(function ($query) {
+                    $query->select('nama')->from('user')->whereColumn('user.id', 'siswa.id_user');
+                });
+            }])->get();
+
+        } elseif ($request->kelas != null && $request->perusahaan != null && $request->filter == null) {
+            $absen = Absen::whereDate('tanggal', Carbon::now()->toDateString())->whereHas('siswa', function ($query) use ($request) {
+                $query->where('id_perusahaan', $request->perusahaan)->where('kelas', $request->kelas);
+            })->with(['siswa' => function ($query) {
+                $query->with('user')->orderBy('kelas')->orderBy(function ($query) {
+                    $query->select('nama')->from('user')->whereColumn('user.id', 'siswa.id_user');
+                });
+            }])->get();
+        } elseif ($request->kelas == null && $request->perusahaan != null && $request->filter == null) {
+            $absen = Absen::whereDate('tanggal', Carbon::now()->toDateString())->whereHas('siswa', function ($query) use ($request) {
+                $query->where('id_perusahaan', $request->perusahaan);
+            })->with(['siswa' => function ($query) {
+                $query->with('user')->orderBy('kelas')->orderBy(function ($query) {
+                    $query->select('nama')->from('user')->whereColumn('user.id', 'siswa.id_user');
+                });
+            }])->get();
+            
         } else {
-            $siswa = [];
+            $absen = Absen::whereMonth('tanggal', $request->filter)->whereHas('siswa', function ($query) use ($request) {
+                $query->where('id_perusahaan', $request->perusahaan)->when($request->kelas, function ($query, $kelas) {
+                    $query->where('kelas', $kelas);
+                });
+            })->with(['siswa' => function ($query) {
+                $query->with('user')->orderBy('kelas')->orderBy(function ($query) {
+                    $query->select('nama')->from('user')->whereColumn('user.id', 'siswa.id_user');
+              });
+            }])->get();
         }
 
         $data = [
             'title' => 'Rekap Absensi',
             'absen' => $absen,
-            'perusahaan' => Perusahaan::all(),
+            'perusahaan' => Perusahaan::orderBy('nama')->get(),
             'reqkelas' => $request->kelas,
             'reqperusahaan' => $request->perusahaan,
             'reqfilter' => $request->filter
