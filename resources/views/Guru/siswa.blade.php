@@ -78,6 +78,7 @@
                                             <div class="form-group">
                                                 <select name="filter" class="form-select">
                                                     <option value="">Hari Ini</option>
+                                                    <option value="6" {{ $reqfilter == '6' ? 'selected' : ''}}>Juni</option>
                                                     <option value="7" {{ $reqfilter == '7' ? 'selected' : ''}}>Juli</option>
                                                     <option value="8" {{ $reqfilter == '8' ? 'selected' : ''}}>Agustus</option>
                                                     <option value="9" {{ $reqfilter == '9' ? 'selected' : ''}}>September</option>
@@ -127,6 +128,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Tanggal</th>
                                             <th>Nama</th>
                                             <th>Kelas</th>
                                             <th><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -157,7 +159,7 @@
                                                     <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
                                                     <path d="M18 16.5v1.5l.5 .5" />
                                                 </svg> Jam Masuk</th>
-                                            <th>Foto</th>
+                                            <th>Det. Masuk</th>
 
                                             <th> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -172,9 +174,9 @@
                                                     <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
                                                     <path d="M18 16.5v1.5l.5 .5" />
                                                 </svg> Jam Keluar</th>
-                                            <th>Foto</th>
-                                            <th>Ket.</th>
-                                            <th>Foto Ket.</th>
+                                            <th>Det. Keluar</th>
+                                            <th>Det. Izin</th>
+                                            {{-- <th>Foto Ket.</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -184,18 +186,19 @@
                                         @foreach($absen as $item)
                                         <tr>
                                             <td>{{ $no++ }}</td>
+                                            <td>{{ $item->tanggal }}</td>
                                             <td>{{ $item->siswa->user->nama }}</td>
                                             <td>{{ $item->siswa->kelas }}</td>
                                             <td>{{ $item->siswa->perusahaan->nama }}</td>
                                             <td>{{ $item->siswa->perusahaan->guru->user->nama }}</td>
                                             <td> <span class="badge bg-{{ $item->status == 'Hadir' ? 'green' : 'red' }}-lt">{{ $item->status }}</span></td>
                                             <td>{{ $item->jam_masuk }}</td>
-                                            <td><a href="">Lihat {{ $item->foto_masuk }}</a></td>
+                                            <td><a href="{{ Storage::url('absensi/'. $item->foto_masuk) }}">Lihat</a></td>
                                             {{-- <td>{{ $item->lokasi_masuk }}</td> --}}
                                             <td>{{ $item->jam_keluar }}</td>
-                                            <td> <a href="">Lihat {{ $item->foto_keluar }}</a></td>
-                                            <td>{{ $item->keterangan }}</td>
-                                            <td><a href="">Lihat</a>{{ $item->foto }}</td>
+                                            <td> <a href="{{ Storage::url('absensi/'. $item->foto_keluar) }}">Lihat</a></td>
+                                            <td> <span class="badge bg-{{ $item->keterangan == null ? 'green' : 'red' }}-lt">{{ $item->keterangan == null ? 'Tdk Izin' : $item->keterangan }}</span></td>
+                                            {{-- <td><a href="">Lihat</a>{{ $item->foto }}</td> --}}
                                         </tr>
                                         @endforeach
                                     </tbody>

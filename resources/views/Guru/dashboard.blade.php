@@ -21,8 +21,7 @@
 
         <div class="row">
 
-            <div class="col-md-6 col-xl-6">
-                <a href="/siswa" class="text-decoration-none">
+            <div class="col-sm-6 col-lg-3">
                     <div class="card card-sm">
                         <div class="card-body">
                             <div class="row align-items-center">
@@ -53,11 +52,9 @@
                             </div>
                         </div>
                     </div>
-                </a>
             </div>
 
-            <div class="col-md-6 col-xl-6">
-                <a href="/perusahaan" class="text-decoration-none">
+            <div class="col-sm-6 col-lg-3">
                     <div class="card card-sm">
                         <div class="card-body">
                             <div class="row align-items-center">
@@ -87,7 +84,6 @@
                             </div>
                         </div>
                     </div>
-                </a>
             </div>
             <div class="page-header d-print-none">
                 <div class="container-xl">
@@ -95,10 +91,10 @@
                         <div class="col">
                             <!-- Page pre-title -->
                             <div class="page-pretitle">
-                                Chart
+                                Data Chart
                             </div>
                             <h2 class="page-title">
-                                Rekap Absen Siswa !
+                                Rekap Absen Siswa
                             </h2>
                         </div>
                     </div>
@@ -143,8 +139,8 @@ document.addEventListener("DOMContentLoaded", function() {
         fill: {
             opacity: 1,
         },
-        series: [44, 55, 12, 2],
-        labels: ["XI PPLG 3", "Affilliate", "E-mail", "Other"],
+        series: [93, 900],
+        labels: ["Hadir", "Tidak Hadir"],
         tooltip: {
             theme: 'dark'
         },
