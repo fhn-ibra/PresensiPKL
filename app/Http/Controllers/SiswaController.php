@@ -45,22 +45,33 @@ class SiswaController extends Controller
                 $absen->save();
             }
         }
+
         $absensi = Absen::where('id_siswa', Auth::user()->siswa->first()->id)->where('tanggal', Carbon::now()->toDateString())->first();
+
         if($absensi->jam_masuk == null){
+            if(Carbon::now()->hour < 7){
+                return ['absen' => false, 'message' => 'Anda Baru Bisa Absen Masuk Pada 07:00'];
+            } 
+            
             $foto = $request->image;
             $nama = Auth::user()->id . "-" . Carbon::now()->toDateString() . "-" . rand(1, 1000000);
             $img_exp = explode(";base64", $foto);
             $foto_64 = base64_decode($img_exp[1]);
             $file = $nama . ".png";
             Storage::put('public/absensi/'.$file, $foto_64);
-
+            
             $absensi->status = 'Hadir';
             $absensi->jam_masuk = Carbon::now()->toTimeString();
             $absensi->foto_masuk = $file;
             $absensi->lokasi_masuk = $request->lokasi;
             $absensi->save();
             return ['absen' => true, 'message' => 'Absensi Masuk Berhasil'];
-            } elseif ($absensi->jam_masuk != null && $absensi->jam_keluar == null){
+            
+        } elseif ($absensi->jam_masuk != null && $absensi->jam_keluar == null){
+            if(Carbon::now()->hour < 14){
+                return ['absen' => false, 'message' => 'Anda Baru Bisa Absen Pulang Pada 14:00'];
+            }
+
                 $foto = $request->image;
                 $nama = Auth::user()->id . "-" . Carbon::now()->toDateString() . "-" . rand(1, 1000000);
                 $img_exp = explode(";base64", $foto);
