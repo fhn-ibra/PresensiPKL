@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="text-muted-center">
-                                        Rekap Siswa
+                                        Rekap Absensi
                                     </div>
                                 </div>
                             </div>
