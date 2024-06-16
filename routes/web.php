@@ -38,6 +38,7 @@ Route::group(['middleware' => ['guru']], function(){
     Route::get('/perusahaan/{id}', [GuruController::class, 'detail']);
 
     Route::get('/siswa', [GuruController::class, 'siswa']);
+    Route::get('/siswa/export', [GuruController::class, 'export']);
 
     Route::get('/guru', [GuruController::class, 'guru']);
     Route::post('/guru', [GuruController::class, 'addGuru']);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AbsensiExport;
 use Carbon\Carbon;
 use App\Models\Guru;
 use App\Models\User;
@@ -9,6 +10,7 @@ use App\Models\Absen;
 use App\Models\Siswa;
 use App\Models\Perusahaan;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GuruController extends Controller
 {
@@ -155,5 +157,9 @@ class GuruController extends Controller
         $guru->save();
 
         return redirect('/guru')->with(['success' => 'Data Guru Berhasil Dibuat']);
+    }
+
+    public function export(Request $request){
+        return Excel::download(new AbsensiExport($request->kelas, $request->perusahaan, $request->filter), 'absensi.xlsx');
     }
 }
