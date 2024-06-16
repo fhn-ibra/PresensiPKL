@@ -68,18 +68,11 @@
 <div class="section" id="user-sektion">
     <div id="user-detail" style="margin-top: 70px">
         <div id="user-info">
-            {{-- TODO: Ubah menjadi Info Siswa --}}
-            <h3 id="name">Revaldo Parikesit</h3>
-            <span id="role">XI PPLG 3</span>
+            <h3 id="name">{{ Auth::user()->nama }}</h3>
+            <span id="role">{{ Auth::user()->siswa->first()->kelas }}</span>
             <p style="margin-top: 15px">
-                <span id="role">PT. Komatsu Marketing And Support</span>
+                <span id="role">{{ Auth::user()->siswa->first()->perusahaan->first()->nama }}</span>
             </p>
-            {{-- <h3 id="user-name">{{ Auth::guard('karyawan')->user()->nama_lengkap }}</h3>
-            <span id="user-role">{{ Auth::guard('karyawan')->user()->jabatan }}</span>
-            <span id="user-role">({{ $cabang->nama_cabang }})</span>
-            <p style="margin-top: 15px">
-                <span id="user-role">({{ $departemen->nama_dept }})</span>
-            </p> --}}
         </div>
     </div>
 </div>
@@ -87,21 +80,25 @@
         <div class="col">
             <div class="row" style="margin-top:14px">
                 <div class="col-10">
-                    <div class="form-group">
-                        <select name="bulan" id="bulan" class="form-control selectmaterialize">
-                            <option value="">Bulan</option>
-                            {{-- @for ($i = 1; $i <= 12; $i++)
-                                <option {{ Request('bulan') == $i ? 'selected' : '' }} value="{{ $i }}">
-                                    {{ $namabulan[$i] }}</option>
-                            @endfor --}}
-                        </select>
+                    <form method="GET">        
+                        <div class="form-group">
+                            <select name="bulan" id="bulan" class="form-control selectmaterialize">
+                                <option value="6" {{ $bulan == 6 ? 'selected' : '' }}>Juni</option>
+                                <option value="7" {{ $bulan == 7 ? 'selected' : '' }}>Juli</option>
+                                <option value="8" {{ $bulan == 8 ? 'selected' : '' }}>Agustus</option>
+                                <option value="9" {{ $bulan == 9 ? 'selected' : '' }}>September</option>
+                                <option value="10" {{ $bulan == 10 ? 'selected' : '' }}>Oktober</option>
+                                <option value="11" {{ $bulan == 11 ? 'selected' : '' }}>November</option>
+                                <option value="12" {{ $bulan == 12 ? 'selected' : '' }}>Desember</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="col-2">
-                    <button class="btn btn-primary w-100" id="getdata">
-                        <ion-icon name="search"></ion-icon>
-                    </button>
-                </div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <ion-icon name="search"></ion-icon>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -112,43 +109,16 @@
           <th>Tanggal</th>
           <th>Keterangan</th>
         </tr>
+        <?php $no = 1; ?>
+        @foreach ($absen as $item)
         <tr>
-          <td>1</td>
-          <td>12-06-2024</td>
-          <td class="{{ 'Hadir' == 'Hadir' ? 'hadir' : 'tidak-hadir' }}">Hadir</td>
+          <td>{{ $no++ }}</td>
+          <td>{{ $item->tanggal }}</td>
+          <td class="{{ $item->status == 'Hadir' ? 'hadir' : 'tidak-hadir' }}">{{ $item->status }}</td>
         </tr>
-        <tr>
-          <td>2</td>
-          <td>13-06-2024</td>
-          <td class="{{ 'Tidak Hadir' == 'Hadir' ? 'hadir' : 'tidak-hadir' }}">Tidak Hadir</td>
-        </tr>
+        @endforeach
       </table>
     <div class="row mt-2" style="position: fixed; width:100%; margin:auto; overflow-y:scroll; height:430px">
         <div class="col" id="showhistori"></div>
     </div>
 @endsection
-
-
-@push('myscript')
-    <script>
-        $(function() {
-            $("#getdata").click(function(e) {
-                var bulan = $("#bulan").val();
-                var tahun = $("#tahun").val();
-                $.ajax({
-                    type: 'POST',
-                    url: '/gethistori',
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        bulan: bulan,
-                        tahun: tahun
-                    },
-                    cache: false,
-                    success: function(respond) {
-                        $("#showhistori").html(respond);
-                    }
-                });
-            });
-        });
-    </script>
-@endpush

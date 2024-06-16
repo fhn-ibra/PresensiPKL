@@ -1,13 +1,12 @@
 <!-- App Bottom Menu -->
 <div class="appBottomMenu">
-    <a href="/home" class="item {{ request()->is('home') ? 'active' : '' }}">
+    <a href="/home" class="item {{ $title == 'Home' ? 'active' : '' }}">
         <div class="col">
             <ion-icon name="home-outline"></ion-icon>
             <strong>Home</strong>
         </div>
     </a>
-    {{-- TODO: Ubah Menjadi Siswa Auth --}}
-    <a href="/create" class="item">
+    <a href="/create" class="item {{ $title == 'Absensi' ? 'active' : '' }}">
         <div class="col">
             <ion-icon name="camera-outline"></ion-icon>
             <strong>Absen</strong>  
@@ -28,7 +27,7 @@
             </div>
         </a>
     @endif --}}
-    <a href="/histori" class="item {{ request()->is('presensi/histori') ? 'active' : '' }}">
+    <a href="/histori" class="item {{ $title == 'Histori' ? 'active' : '' }}">
         <div class="col">
             <ion-icon name="document-text-outline" role="img" class="md hydrated" aria-label="document text outline">
             </ion-icon>

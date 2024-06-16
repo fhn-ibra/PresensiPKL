@@ -13,14 +13,16 @@ class SiswaController extends Controller
 {
     public function index(){
         $data = [
-            'absen' => Absen::where('id_siswa', Auth::user()->siswa->first()->id)->where('tanggal', Carbon::now()->toDateString())->first()
+            'absen' => Absen::where('id_siswa', Auth::user()->siswa->first()->id)->where('tanggal', Carbon::now()->toDateString())->first(),
+            'title' => 'Home'
         ];
         return view('Siswa.dashboard', $data);
     }
 
     public function create(){
         $data = [
-            'hari' => date("d-m-Y")
+            'hari' => date("d-m-Y"),
+            'title'=> 'Absensi'
         ];
         return view('Siswa.create', $data);
     }
@@ -87,5 +89,14 @@ class SiswaController extends Controller
                 } else {
                     return ['absen' => false, 'message' => 'Anda Sudah Absen Hari Ini'];
         }
+    }
+
+    public function histori(Request $request){
+        $data = [
+            'title' => 'Histori',
+            'bulan' => ($request->bulan == null ? Carbon::now()->month : $request->bulan),
+            'absen' => ($request->bulan == null ? Absen::whereMonth('tanggal', Carbon::now()->month)->get() : Absen::whereMonth('tanggal', $request->bulan)->get())
+        ];
+        return view('Siswa.histori', $data);
     }
 }
