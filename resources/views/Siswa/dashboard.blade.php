@@ -33,18 +33,11 @@
     <div class="section" id="user-section">
         <div id="user-detail" style="margin-top: 55px">
             <div id="user-info">
-                {{-- TODO: Ubah menjadi Info Siswa --}}
                 <h3 id="user-name">{{ Auth::user()->nama }}</h3>
-                <span id="user-role">XI PPLG 3</span>
+                <span id="user-role">{{ Auth::user()->siswa->first()->kelas }}</span>
                 <p style="margin-top: 15px">
-                    <span id="user-role">PT. Komatsu Marketing And Support</span>
+                    <span id="user-role">{{ Auth::user()->siswa->first()->perusahaan->first()->nama }}</span>
                 </p>
-                {{-- <h3 id="user-name">{{ Auth::guard('karyawan')->user()->nama_lengkap }}</h3>
-                <span id="user-role">{{ Auth::guard('karyawan')->user()->jabatan }}</span>
-                <span id="user-role">({{ $cabang->nama_cabang }})</span>
-                <p style="margin-top: 15px">
-                    <span id="user-role">({{ $departemen->nama_dept }})</span>
-                </p> --}}
             </div>
         </div>
     </div>
