@@ -265,8 +265,7 @@
 </div>
 @endsection
 
-@section('scripts')
-@parent
+@push('myscript')
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
@@ -295,4 +294,4 @@ function showDetails(imageUrl, location) {
     imageContainer.appendChild(image);
 }
 </script>
-@endsection
+@endpush
