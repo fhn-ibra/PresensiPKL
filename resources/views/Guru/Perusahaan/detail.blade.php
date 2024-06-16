@@ -8,7 +8,18 @@
         <div class="card card-lg">
 
             <div class="card-body">
-
+                @if(Session::get('success'))
+                <div class="alert alert-success mb-4" role="alert">
+                    <div class="d-flex">
+                      <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l5 5l10 -10"></path></svg>
+                      </div>
+                      <div>
+                        Data Berhasil Diedit
+                      </div>
+                    </div>
+                  </div>
+                  @endif
                 <div class="row">
 
                     <div class="col-6">
@@ -16,7 +27,7 @@
                         <address>
                             Alamat : {{ $perusahaan->alamat }}<br>
                             Penanggung Jawab : {{ $perusahaan->pj }}<br>
-                            No HP : {{ $perusahaan->nohp }}<br>
+                            No HP : <a href="https://wa.me/{{ $perusahaan->nohp }}">{{ $perusahaan->nohp }}</a><br>
                             Pembimbing : {{ $perusahaan->guru->user->nama }}
                         </address>
                     </div>
@@ -30,7 +41,7 @@
                                     <path d="M12 5l0 14"></path>
                                     <path d="M5 12l14 0"></path>
                                 </svg>
-                                Tambah Data
+                                Edit Perusahaan
                             </a>
                         </div>
                     </div>
@@ -44,9 +55,7 @@
                             <tr>
                                 <th class="text-center" style="width: 1%"></th>
                                 <th>Nama Siswa</th>
-                                <th class="text-center">Qnt</th>
-                                <th class="text-end">Unit</th>
-                                <th class="text-end">Amount</th>
+                                <th class="text-center">Kelas</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,9 +69,7 @@
                                     <p class="strong mb-1">{{ $item->user->nama }}</p>
                                     {{-- <div class="text-secondary">Logo and business cards design</div> --}}
                                 </td>
-                                <td class="text-center">1</td>
-                                <td class="text-end">$1.800,00</td>
-                                <td class="text-end">$1.800,00</td>
+                                <td class="text-center">{{ $item->kelas }}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -76,17 +83,16 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit</h5>
+                <h5 class="modal-title">Edit Perusahaan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/perusahaan" method="POST">
+                <form action="/perusahaan/{{ $id }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-12">
                             <div class="input-icon mb-3">
                                 <span class="input-icon-addon">
-                                    <!-- Download SVG icon from http://tabler-icons.io/i/user -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round"
@@ -101,7 +107,7 @@
                                         <path d="M9 18l0 .01" />
                                     </svg>
                                 </span>
-                                <input required type="text" value="" id="nama_perusahaan" class="form-control"
+                                <input required type="text" value="{{ $perusahaan->nama }}" id="nama_perusahaan" class="form-control"
                                     placeholder="Nama Perusahaan" name="nama_perusahaan">
                             </div>
                         </div>
@@ -124,7 +130,7 @@
                                         <path d="M19 18v.01" />
                                     </svg>
                                 </span>
-                                <input required type="text" id="alamat_perusahaan" value="" class="form-control"
+                                <input required type="text" id="alamat_perusahaan" value="{{ $perusahaan->alamat }}" class="form-control"
                                     name="alamat_perusahaan" placeholder="Alamat Perusahaan">
                             </div>
                         </div>
@@ -144,7 +150,7 @@
                                     </svg>
                                 </span>
                                 <input required type="text" id="pj_perusahaan" class="form-control" name="pj_perusahaan"
-                                    placeholder="Nama Penanggung Jawab Perusahaan">
+                                    placeholder="Nama Penanggung Jawab Perusahaan" value="{{ $perusahaan->pj }}">
                             </div>
                         </div>
                     </div>
@@ -164,7 +170,7 @@
                                     </svg>
                                 </span>
                                 <input required type="text" class="form-control" name="no_pj"
-                                    placeholder="No Telp Penanggung Jawab">
+                                    placeholder="No Telp Penanggung Jawab" value="{{ $perusahaan->nohp }}">
                             </div>
                         </div>
                     </div>
@@ -173,7 +179,10 @@
                         <div class="form-group">
 
                             <select name="guru" class="form-select" required>
-                                <option value="" selected disabled>Nama Guru</option>
+                                <option value="{{ $perusahaan->id_guru }}">{{ $perusahaan->guru->user->nama }}</option>
+                                @foreach ($guru as $guru)
+                                <option value="{{ $guru->id }}">{{ $guru->user->nama }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -213,74 +222,6 @@
 $(function() {
     $("#btnTambahCabang").click(function() {
         $("#modal-inputcabang").modal("show");
-    });
-
-
-
-    $("#frmCabang").submit(function() {
-        var nama_perusahaan = $("#nama_perusahaan").val();
-        var alamat_perusahaan = $("#alamat_perusahaan").val();
-        var pj_perusahaan = $("#pj_perusahaan").val();
-        var no_pj = $("#no_pj").val();
-        var Guru = $("#Guru").val();
-
-
-        if (nama_perusahaan == "") {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Nama Perusahaan Harus diisi!',
-                icon: 'warning',
-                confirmButtonText: 'Ok'
-            }).then((result) => {
-                $("#nama_perusahaan").focus();
-            });
-
-            return false;
-        } else if (alamat_perusahaan == "") {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Alamat Perusahaan Harus Diisi !',
-                icon: 'warning',
-                confirmButtonText: 'Ok'
-            }).then((result) => {
-                $("#alamat_perusahaan").focus();
-            });
-
-            return false;
-        } else if (no_pj == "") {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Nomor Penanggung Jawab Perusahaan Harus Diisi !',
-                icon: 'warning',
-                confirmButtonText: 'Ok'
-            }).then((result) => {
-                $("#no_pj").focus();
-            });
-
-            return false;
-        } else if (Guru == "") {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Nama Guru Harus Diisi !',
-                icon: 'warning',
-                confirmButtonText: 'Ok'
-            }).then((result) => {
-                $("#Guru").focus();
-            });
-            return false;
-        } else if (radius_cabang == "") {
-            // alert('Nik Harus Diisi');
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Nomor Penanggung Jawab Harus Diisi !',
-                icon: 'warning',
-                confirmButtonText: 'Ok'
-            }).then((result) => {
-                $("#no_pj").focus();
-            });
-
-            return false;
-        }
     });
 });
 </script>

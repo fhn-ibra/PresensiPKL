@@ -24,7 +24,7 @@ class GuruController extends Controller
     public function perusahaan(){
         $data = [
             'title' => 'Perusahaan',
-            'guru' => Guru::all(),
+            'guru' => Guru::with('user')->get()->sortBy(function ($guru) { return $guru->user->nama;}),
             'perusahaan' => Perusahaan::all()
         ];
 
@@ -40,16 +40,31 @@ class GuruController extends Controller
         $perusahaan->id_guru = $request->guru;
         $perusahaan->save();
 
-        return redirect('/perusahaan');
+        return redirect('/perusahaan')->with(['success' => 'Data Perusahaan Berhasil Dibuat']);
     }
     public function detail($id){
+        $perusahaan = Perusahaan::find($id);
         $data = [
             'title' => Perusahaan::find($id)->value('nama'),
-            'perusahaan' => Perusahaan::find($id),
-            'siswa' => Siswa::where('id_perusahaan', $id)->get()
+            'perusahaan' => $perusahaan,
+            'siswa' => Siswa::where('id_perusahaan', $id)->get(),
+            'guru' => Guru::whereNot('id', $perusahaan->id_guru)->get(),
+            'id' => $id
         ];
 
         return view('Guru.Perusahaan.detail', $data);
+    }
+
+    public function edit(Request $request, $id){
+        $perusahaan = Perusahaan::find($id);
+        $perusahaan->nama = $request->nama_perusahaan;
+        $perusahaan->alamat = $request->alamat_perusahaan;
+        $perusahaan->pj= $request->pj_perusahaan;
+        $perusahaan->nohp = $request->no_pj;
+        $perusahaan->id_guru = $request->guru;
+        $perusahaan->save();
+
+        return back()->with(['success' => true]);
     }
     
 

@@ -36,6 +36,7 @@ Route::group(['middleware' => ['guru']], function(){
     Route::get('/perusahaan', [GuruController::class, 'perusahaan']);
     Route::post('/perusahaan', [GuruController::class, 'addPerusahaan']);
     Route::get('/perusahaan/{id}', [GuruController::class, 'detail']);
+    Route::post('/perusahaan/{id}', [GuruController::class, 'edit']);
 
     Route::get('/siswa', [GuruController::class, 'siswa']);
     Route::get('/siswa/export', [GuruController::class, 'export']);

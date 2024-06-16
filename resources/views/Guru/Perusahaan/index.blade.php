@@ -12,6 +12,11 @@
                 <h2 class="page-title">
                     PERUSAHAAN
                 </h2>
+                @if (Session::get('success'))
+                <div class="alert alert-success my-3">
+                    {{ Session::get('success') }}
+                </div>
+                @endif
             </div>
             <div class="col-12">
                 <a href="#" class="btn btn-primary" id="btnTambahCabang">
