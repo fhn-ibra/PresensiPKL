@@ -77,6 +77,7 @@ class SiswaController extends Controller
         $nama = Auth::user()->id . "-" . Carbon::now()->toDateString() . "-" . rand(1, 1000000) . "." .$img->getClientOriginalExtension();
         $img->storeAs('public/absensi/'. $nama);
 
+        $absensi->status = 'Izin';
         $absensi->foto = $nama;
         $absensi->keterangan = $request->keterangan;
         $absensi->save();

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('absen', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_siswa');
-            $table->enum('status', ['Hadir', 'Tidak Hadir']);
+            $table->enum('status', ['Hadir', 'Tidak Hadir', 'Izin']);
             $table->time('jam_masuk')->nullable();
             $table->string('foto_masuk')->nullable();
             $table->text('lokasi_masuk')->nullable();
