@@ -292,7 +292,7 @@ function showDetails(imageUrl, location) {
 
     var loc = location.split(',');
     L.marker([parseFloat(loc[0]), parseFloat(loc[1])]).addTo(map)
-        .bindPopup('absensi/')
+        .bindPopup('Siswa Berada Disini')
         .openPopup();
 
     var image = document.createElement('img');
