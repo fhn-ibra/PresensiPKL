@@ -53,6 +53,12 @@ Route::group(['middleware' => ['siswa']], function(){
     Route::get('/create', [SiswaController::class, 'create']);
     Route::post('/create', [SiswaController::class, 'store']);
     Route::get('/histori', [SiswaController::class, 'histori']);
+    Route::get('/option', function () {
+        return view('Siswa.opsi');
+    });
+    Route::get('/tidakhadir', function () {
+        return view('Siswa.createth');
+    });
 });
 //----------Siswa Route----------
 

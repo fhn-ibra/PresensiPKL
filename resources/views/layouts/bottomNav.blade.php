@@ -6,7 +6,7 @@
             <strong>Home</strong>
         </div>
     </a>
-    <a href="/create" class="item {{ $title == 'Absensi' ? 'active' : '' }}">
+    <a href="/option" class="item {{ $title == 'Absensi' ? 'active' : '' }}">
         <div class="col">
             <ion-icon name="camera-outline"></ion-icon>
             <strong>Absen</strong>  

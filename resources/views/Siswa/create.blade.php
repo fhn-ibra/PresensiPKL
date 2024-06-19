@@ -72,29 +72,10 @@
     </div> --}}
     <div class="row">
         <div class="col">
-            <div class="row" style="margin-top:14px">
-                <div class="col-12">
-                    <div class="form-group">
-                        <select name="bulan" id="bulan" class="form-control selectmaterialize">
-                            <option value="">Hadir</option>
-                            <option value="">Tidak Hadir</option>
-                            {{-- TODO: Ubah Menjadi Tidak Hadir --}}
-                            {{-- @for ($i = 1; $i <= 12; $i++)
-                                <option {{ Request('bulan') == $i ? 'selected' : '' }} value="{{ $i }}">
-                                    {{ $namabulan[$i] }}</option>
-                            @endfor --}}
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
             {{-- TODO: Fix Absen --}}
             <button id="takeabsen" class="btn btn-primary btn-block">
                 <ion-icon name="camera-outline"></ion-icon>
-                Absen Masuk
+                Absen
             </button>
             {{-- @if ($cek > 0)
                 <button id="takeabsen" class="btn btn-danger btn-block">

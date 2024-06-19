@@ -16,7 +16,7 @@ class SiswaController extends Controller
             'absen' => Absen::where('id_siswa', Auth::user()->siswa->first()->id)->where('tanggal', Carbon::now()->toDateString())->first(),
             'title' => 'Home'
         ];
-        return view('Siswa.dashboard', $data);
+        return view('Siswa.dashboard ', $data);
     }
 
     public function create(){
