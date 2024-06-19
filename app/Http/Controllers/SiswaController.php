@@ -27,6 +27,63 @@ class SiswaController extends Controller
         return view('Siswa.create', $data);
     }
 
+    public function opsi(){
+        $data = [
+            'title' => 'Absen'
+        ];
+        return view('Siswa.opsi', $data);
+    }
+
+    public function izin(){
+        $data = [
+            'title' => 'Izin'
+        ];
+        return view('Siswa.createth', $data);
+    }
+
+    public function izinstore(Request $request){
+        $data = $request->validate([
+            'foto' => 'required|mimes:jpg,jpeg,png'
+        ]);
+
+        $cek = Absen::where('tanggal', Carbon::now()->toDateString())->count();
+
+        if($cek == 0){
+            $siswa = Siswa::all();  
+            foreach ($siswa as $s){
+                $absen = new Absen();
+                $absen->id_siswa = $s->id;
+                $absen->status = 'Tidak Hadir';
+                $absen->jam_masuk = null;
+                $absen->foto_masuk = null;
+                $absen->lokasi_masuk = null;
+                $absen->jam_keluar = null;
+                $absen->foto_keluar = null;
+                $absen->lokasi_keluar = null;
+                $absen->foto = null;
+                $absen->keterangan = null;
+                $absen->tanggal = Carbon::now()->toDateString();
+                $absen->save();
+            }
+        }
+
+        $absensi = Absen::where('id_siswa', Auth::user()->siswa->first()->id)->where('tanggal', Carbon::now()->toDateString())->first();
+
+        if($absensi->foto != null || $absensi->foto_masuk != null){
+            return redirect('/izin')->with(['errors' => true]);
+        }
+
+        $img = $request->file('foto');
+        $nama = Auth::user()->id . "-" . Carbon::now()->toDateString() . "-" . rand(1, 1000000) . "." .$img->getClientOriginalExtension();
+        $img->storeAs('public/absensi/'. $nama);
+
+        $absensi->foto = $nama;
+        $absensi->keterangan = $request->keterangan;
+        $absensi->save();
+
+        return redirect('/izin')->with(['error' => 'berhasil']);
+    }
+
     public function store(Request $request){
         $cek = Absen::where('tanggal', Carbon::now()->toDateString())->count();
         if($cek == 0){
@@ -50,7 +107,7 @@ class SiswaController extends Controller
 
         $absensi = Absen::where('id_siswa', Auth::user()->siswa->first()->id)->where('tanggal', Carbon::now()->toDateString())->first();
 
-        if($absensi->jam_masuk == null){
+        if($absensi->jam_masuk == null && $absensi->foto == null){
             if(Carbon::now()->hour < 7){
                 return ['absen' => false, 'message' => 'Anda Baru Bisa Absen Masuk Pada 07:00'];
             } 
@@ -69,7 +126,7 @@ class SiswaController extends Controller
             $absensi->save();
             return ['absen' => true, 'message' => 'Absensi Masuk Berhasil'];
             
-        } elseif ($absensi->jam_masuk != null && $absensi->jam_keluar == null){
+        } elseif ($absensi->jam_masuk != null && $absensi->jam_keluar == null && $absensi->foto == null){
             if(Carbon::now()->hour < 14){
                 return ['absen' => false, 'message' => 'Anda Baru Bisa Absen Pulang Pada 14:00'];
             }

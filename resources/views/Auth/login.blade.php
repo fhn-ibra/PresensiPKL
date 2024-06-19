@@ -247,9 +247,7 @@
 
             <center>
                 <div class="row">
-                    <div class="d-flex justify-content-center"><b>Created by <a
-                    href="https://www.instagram.com/ibrbbra?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Ibra</a>,
-                <a href="https://www.instagram.com/e_erlanggaa?igsh=OGQ5ZDc2ODk2ZA==">Erlangga</a> & <a href="a">Revaldo</a></b>
+                    <div class="d-flex justify-content-center"><b>Created by Orens Solusion Prestasi Prima</b>
             </div>
         </center>
         </div>

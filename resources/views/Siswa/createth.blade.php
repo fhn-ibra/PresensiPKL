@@ -1,4 +1,5 @@
 @extends('layouts.presensi')
+
 @section('header')
     <!-- App Header -->
     <div class="appHeader bg-primary text-light">
@@ -10,19 +11,20 @@
         <div class="pageTitle">Tidak Hadir</div>
         <div class="right"></div>
     </div>
-    <!-- * App Header -->
 @endsection
+
 @section('content')
 <div class="row" style="margin-top: 60px">
     <div class="col">
-      <form id="absenForm">
+      <form method="POST" action="/izin" enctype="multipart/form-data">
+        @csrf
         <div class="form-group">
           <label for="foto">Foto Surat</label>
           <input type="file" id="foto" name="foto" class="form-control" accept="image/*" required>
         </div>
         <div class="form-group">
-          <label for="lokasi">Keterangan</label>
-          <input type="text" id="lokasi" name="lokasi" class="form-control">
+          <label for="keterangan">Keterangan</label>
+          <input type="text" name="keterangan" class="form-control" required>
         </div>
         <div class="row">
           <div class="col">
@@ -36,3 +38,27 @@
     </div>
   </div>
 @endsection
+
+@push('myscript')
+
+@if(Session::get('errors'))
+<script>
+Swal.fire({
+  title: 'Error !',
+  text:  'Anda Sudah Absen Hari Ini',
+  icon: 'error'
+  })
+</script>
+@endif
+
+@if(session('error') == 'berhasil')
+<script>
+Swal.fire({
+  title: 'Berhasil !',
+  text: 'Izin Berhasil',
+  icon: 'success'
+})  
+</script>
+@endif
+
+@endpush
