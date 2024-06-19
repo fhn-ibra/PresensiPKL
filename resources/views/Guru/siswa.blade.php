@@ -216,15 +216,23 @@
                                     <td> <span
                                             class="badge bg-{{ $item->status == 'Hadir' ? 'green' : 'red' }}-lt">{{ $item->status }}</span>
                                     </td>
-                                    <td>{{ $item->jam_masuk }}</td>
-                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#detailModal" onclick="showDetails('{{ Storage::url('absensi/' . $item->foto_masuk) }}', '{{ $item->lokasi_masuk }}')">Lihat</a></td>                                    </td>
-                                    <td>{{ $item->jam_keluar }}</td>
-                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#detailModal" onclick="showDetails('{{ Storage::url('absensi/' . $item->foto_keluar) }}', '{{ $item->lokasi_keluar }}')">Lihat</a>
+                                    <td>{!! $item->jam_masuk != null ? $item->jam_masuk : '<span class="badge bg-red-lt">Belum Absen</span>' !!}</td>
+
+                                    @if($item->jam_masuk == null)
+                                    <td><span class="badge bg-red-lt">Belum Absen</span></td>
+                                    @else
+                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#detailModal" onclick="showDetails('{{ Storage::url('absensi/' . $item->foto_masuk) }}', '{{ $item->lokasi_masuk }}')">Lihat</a></td>
+                                    @endif
+
+                                    <td>{!! $item->jam_keluar != null ? $item->jam_keluar : '<span class="badge bg-red-lt">Belum Absen</span>' !!}</td>
+                                    @if($item->jam_keluar == null)
+                                    <td><span class="badge bg-red-lt">Belum Absen</span></td>
+                                    @else
+                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#detailModal" onclick="showDetails('{{ Storage::url('absensi/' . $item->foto_keluar) }}', '{{ $item->lokasi_keluar }}')">Lihat</a></td>
+                                    @endif
+
+                                    <td> <span class="badge bg-{{ $item->keterangan == null && $item->status == 'Hadir' ? 'green' : 'red' }}-lt">{{ $item->keterangan == null ? 'Tdk Izin' : $item->keterangan }}</span>
                                     </td>
-                                    <td> <span
-                                            class="badge bg-{{ $item->keterangan == null && $item->status == 'Hadir' ? 'green' : 'red' }}-lt">{{ $item->keterangan == null ? 'Tdk Izin' : $item->keterangan }}</span>
-                                    </td>
-                                    {{-- <td><a href="">L   ihat</a>{{ $item->foto }}</td> --}}
                                 </tr>
                                 @endforeach
                             </tbody>
