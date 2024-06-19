@@ -221,14 +221,14 @@
                                     @if($item->jam_masuk == null)
                                     <td><span class="badge bg-red-lt">Belum Absen</span></td>
                                     @else
-                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#detailModal" onclick="showDetails('{{ Storage::url('absensi/' . $item->foto_masuk) }}', '{{ $item->lokasi_masuk }}')">Lihat</a></td>
+                                    <td><a href="#"  onclick="showDetails('{{ Storage::url('absensi/' . $item->foto_masuk) }}', '{{ $item->lokasi_masuk }}')">Lihat</a></td>
                                     @endif
 
                                     <td>{!! $item->jam_keluar != null ? $item->jam_keluar : '<span class="badge bg-red-lt">Belum Absen</span>' !!}</td>
                                     @if($item->jam_keluar == null)
                                     <td><span class="badge bg-red-lt">Belum Absen</span></td>
                                     @else
-                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#detailModal" onclick="showDetails('{{ Storage::url('absensi/' . $item->foto_keluar) }}', '{{ $item->lokasi_keluar }}')">Lihat</a></td>
+                                    <td><a href="#"  onclick="showDetails('{{ Storage::url('absensi/' . $item->foto_keluar) }}', '{{ $item->lokasi_keluar }}')">Lihat</a></td>
                                     @endif
 
                                     <td> <span class="badge bg-{{ $item->keterangan == null && $item->status == 'Hadir' ? 'green' : 'red' }}-lt">{{ $item->keterangan == null ? 'Tdk Izin' : $item->keterangan }}</span>
@@ -249,12 +249,13 @@
 </div>
 
 </div>
-<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="detailModalLabel">Detail Lokasi dan Gambar</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                
             </div>
             <div class="modal-body">
                 <div class="row">

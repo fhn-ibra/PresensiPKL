@@ -219,6 +219,7 @@
 <body>
     <section class="container forms">
         <div class="form login">
+        <img src="{{ asset('icon-512.png') }}" alt="Logo" style="width: 100px; height: auto; display: block; margin: 0 auto 10px;">
             <div class="form-content">
                 <header>Login Absensi PKL</header>
 
