@@ -16,7 +16,10 @@ class GuruController extends Controller
 {
     public function dashboard(){
         $data = [
-            'title' => 'Dashboard'
+            'title' => 'Dashboard',
+            'hadir' => Absen::where('status', 'Hadir')->count(),
+            'tidak' => Absen::where('status', 'Tidak Hadir')->count(),
+            'izin' => Absen::where('status', 'Izin')->count()
         ];
         return view('Guru.dashboard', $data);
     }

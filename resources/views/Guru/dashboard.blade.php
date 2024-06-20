@@ -139,8 +139,8 @@ document.addEventListener("DOMContentLoaded", function() {
         fill: {
             opacity: 1,
         },
-        series: [93, 900],
-        labels: ["Hadir", "Tidak Hadir"],
+        series: [{{ $hadir }}, {{ $tidak }}, {{ $izin }}],
+        labels: ["Hadir", "Tidak Hadir", "Izin"],
         tooltip: {
             theme: 'dark'
         },
