@@ -62,6 +62,10 @@
     .tidak-hadir {
         color: red;
     }
+
+    .izin {
+        color: orange;
+    }
     </style>
 @endsection
 @section('content')
@@ -114,7 +118,7 @@
         <tr>
           <td>{{ $no++ }}</td>
           <td>{{ $item->tanggal }}</td>
-          <td class="{{ $item->status == 'Hadir' ? 'hadir' : 'tidak-hadir' }}">{{ $item->status }}</td>
+          <td class="{{ $item->status == 'Hadir' ? 'hadir' : ($item->status == 'Izin' ? 'izin' : 'tidak-hadir') }}">{{ $item->status }}</td>
         </tr>
         @endforeach
       </table>
