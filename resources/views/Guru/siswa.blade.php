@@ -12,7 +12,7 @@
                     Rekap Absensi
                 </h2>
                 <div class="page-pretitle">
-                    Tanggal wfae9929
+                    {{ \Carbon\Carbon::now()->locale('id')->isoFormat('D MMMM YYYY') }}
                 </div>
             </div>
 
@@ -213,26 +213,42 @@
                                     <td>{{ $item->siswa->kelas }}</td>
                                     <td>{{ $item->siswa->perusahaan->nama }}</td>
                                     <td>{{ $item->siswa->perusahaan->guru->user->nama }}</td>
-                                    <td> <span
-                                            class="badge bg-{{ $item->status == 'Hadir' ? 'green' : 'red' }}-lt">{{ $item->status }}</span>
-                                    </td>
-                                    <td>{!! $item->jam_masuk != null ? $item->jam_masuk : '<span class="badge bg-red-lt">Belum Absen</span>' !!}</td>
+                                    <td> <span class="badge bg-{{ $item->status == 'Hadir' ? 'green' : ($item->status == 'Izin' ? 'orange' : 'red') }}-lt">{{ $item->status }}</span></td>
 
-                                    @if($item->jam_masuk == null)
+                                    @if($item->status != 'Izin')
+                                    <td>{!! $item->jam_masuk != null ? $item->jam_masuk : '<span class="badge bg-red-lt">Belum Absen</span>' !!}</td>
+                                    @else
+                                    <td><span class="badge bg-orange-lt">Izin</span></td>
+                                    @endif
+
+                                    @if($item->jam_masuk == null && $item->status != 'Izin')
                                     <td><span class="badge bg-red-lt">Belum Absen</span></td>
+                                    @elseif($item->status == 'Izin')
+                                    <td><span class="badge bg-orange-lt">Izin</span></td>
                                     @else
                                     <td><a href="#"  onclick="showDetails('{{ Storage::url('absensi/' . $item->foto_masuk) }}', '{{ $item->lokasi_masuk }}')">Lihat</a></td>
                                     @endif
 
+                                    @if($item->status != 'Izin')
                                     <td>{!! $item->jam_keluar != null ? $item->jam_keluar : '<span class="badge bg-red-lt">Belum Absen</span>' !!}</td>
-                                    @if($item->jam_keluar == null)
+                                    @else
+                                    <td><span class="badge bg-orange-lt">Izin</span></td>
+                                    @endif
+
+                                    @if($item->jam_keluar == null && $item->status != 'Izin')
                                     <td><span class="badge bg-red-lt">Belum Absen</span></td>
+                                    @elseif($item->status == 'Izin')
+                                    <td><span class="badge bg-orange-lt">Izin</span></td>
                                     @else
                                     <td><a href="#"  onclick="showDetails('{{ Storage::url('absensi/' . $item->foto_keluar) }}', '{{ $item->lokasi_keluar }}')">Lihat</a></td>
                                     @endif
 
-                                    <td> <span class="badge bg-{{ $item->keterangan == null && $item->status == 'Hadir' ? 'green' : 'red' }}-lt">{{ $item->keterangan == null ? 'Tdk Izin' : $item->keterangan }}</span>
-                                    </td>
+                                    @if($item->status != 'Izin')
+                                    <td><span class="badge bg-{{ $item->keterangan == null && $item->status == 'Hadir' ? 'green' : 'red' }}-lt">{{ $item->keterangan == null ? 'Tdk Izin' : $item->keterangan }}</span></td>
+                                    @else
+                                    {{-- Ini Belum Gais --}}
+                                    <td><a href="">Lihat</a></td>
+                                    @endif
                                 </tr>
                                 @endforeach
                             </tbody>
