@@ -41,17 +41,17 @@
 
 @push('myscript')
 
-@if(Session::get('errors'))
+@if(session('error'))
 <script>
 Swal.fire({
   title: 'Error !',
-  text:  'Anda Sudah Absen Hari Ini',
+  text:  '{{ session('message') }}',
   icon: 'error'
   })
 </script>
 @endif
 
-@if(session('error') == 'berhasil')
+@if(session('true'))
 <script>
 Swal.fire({
   title: 'Berhasil !',

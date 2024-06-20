@@ -8,6 +8,7 @@ use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class SiswaController extends Controller
 {
@@ -42,9 +43,15 @@ class SiswaController extends Controller
     }
 
     public function izinstore(Request $request){
-        $data = $request->validate([
+
+        $validator = Validator::make($request->all(), [
             'foto' => 'required|mimes:jpg,jpeg,png'
         ]);
+    
+        if ($validator->fails()) {
+            return redirect('/izin')->with(['error' => true, 'message' => 'Format Harus jpg, jpeg, atau png']);
+        }
+    
 
         $cek = Absen::where('tanggal', Carbon::now()->toDateString())->count();
 
@@ -70,7 +77,7 @@ class SiswaController extends Controller
         $absensi = Absen::where('id_siswa', Auth::user()->siswa->first()->id)->where('tanggal', Carbon::now()->toDateString())->first();
 
         if($absensi->foto != null || $absensi->foto_masuk != null){
-            return redirect('/izin')->with(['errors' => true]);
+            return redirect('/izin')->with(['error' => true, 'message' => 'Anda Sudah Absen Hari Ini']);
         }
 
         $img = $request->file('foto');
@@ -82,7 +89,7 @@ class SiswaController extends Controller
         $absensi->keterangan = $request->keterangan;
         $absensi->save();
 
-        return redirect('/izin')->with(['error' => 'berhasil']);
+        return redirect('/izin')->with(['true' => true]);
     }
 
     public function store(Request $request){
