@@ -248,7 +248,9 @@
 
             <center>
                 <div class="row">
-                    <div class="d-flex justify-content-center"><b>Created by Orens Solusion Prestasi Prima</b>
+                    <div class="d-flex justify-content-center">
+                        <b>Created by Orens Solution Prestasi Prima</b>
+                    </div>
             </div>
         </center>
         </div>
