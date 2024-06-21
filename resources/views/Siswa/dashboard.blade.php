@@ -31,11 +31,11 @@
         } 
     </style>
     <div class="section" id="user-section">
-        <div id="user-detail" style="margin-top: 55px">
+        <div id="user-detail" style="margin-top: 50px">
             <div id="user-info">
                 <h3 id="user-name">{{ Auth::user()->nama }}</h3>
                 <span id="user-role">{{ Auth::user()->siswa->first()->kelas }}</span>
-                <p style="margin-top: 15px">
+                <p>
                     <span id="user-role">{{ Auth::user()->siswa->first()->perusahaan->first()->nama }}</span>
                 </p>
             </div>

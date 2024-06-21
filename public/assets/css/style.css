@@ -8002,6 +8002,7 @@ body.dark-mode-active .cart-item .cart-item-footer {
     padding: 20px;
     display: flex;
     line-height: 1.2em; /* Adjusted line-height for better spacing */
+    border-radius: 20px;
 }
 
 #user-detail {

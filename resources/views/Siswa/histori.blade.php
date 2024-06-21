@@ -13,32 +13,6 @@
     <!-- * App Header -->
 
     <style>
-    #user-sektion {
-        height: 180px;
-        background-color: #CF850F;
-        padding: 20px;
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px; 
-    }
-
-    #user-detail {
-        margin-top: 20px;
-        display: flex;
-    }
-
-    #user-info {
-        margin-left: 30px !important;
-        line-height: 2px;
-    }
-
-    #name {
-        color: white;
-    }
-
-    #role {
-        color: white;
-    }
-
     table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
@@ -69,13 +43,13 @@
     </style>
 @endsection
 @section('content')
-<div class="section" id="user-sektion">
-    <div id="user-detail" style="margin-top: 70px">
+<div class="section" id="user-section">
+    <div id="user-detail" style="margin-top: 55px">
         <div id="user-info">
-            <h3 id="name">{{ Auth::user()->nama }}</h3>
-            <span id="role">{{ Auth::user()->siswa->first()->kelas }}</span>
+            <h3 id="user-name">{{ Auth::user()->nama }}</h3>
+            <span id="user-role">{{ Auth::user()->siswa->first()->kelas }}</span>
             <p style="margin-top: 15px">
-                <span id="role">{{ Auth::user()->siswa->first()->perusahaan->first()->nama }}</span>
+                <span id="user-role">{{ Auth::user()->siswa->first()->perusahaan->first()->nama }}</span>
             </p>
         </div>
     </div>
