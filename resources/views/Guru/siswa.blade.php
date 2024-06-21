@@ -247,7 +247,7 @@
                                     <td><span class="badge bg-{{ $item->keterangan == null && $item->status == 'Hadir' ? 'green' : 'red' }}-lt">{{ $item->keterangan == null ? 'Tdk Izin' : $item->keterangan }}</span></td>
                                     @else
                                     {{-- Ini Belum Gais --}}
-                                    <td><a href="">Lihat</a></td>
+                                    <td><a href="#"  onclick="showDetail('{{ Storage::url('absensi/' . $item->foto) }}', '{{ $item->keterangan }}')">Lihat</a></td>
                                     @endif
                                 </tr>
                                 @endforeach
@@ -288,6 +288,26 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="izinModal" tabindex="-1" role="dialog" aria-labelledby="izinModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="izinModalLabel">Detail Gambar dan Keterangan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <img id="modalImage" src="" alt="Foto" style="max-width: 100%; height: auto;">
+                        <label for="modalCaption" class="form-label mt-3">Keterangan</label>
+                        <div id="modalCaption" class="form-control" style="height: auto;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('myscript')
@@ -319,4 +339,21 @@ function showDetails(imageUrl, location) {
     imageContainer.appendChild(image);
 }
 </script>
+<script>
+    function showDetail(imageUrl, caption) {
+        // Set the image and caption in the modal
+        var modalImg = document.getElementById("modalImage");
+        var modalCaption = document.getElementById("modalCaption");
+        
+        modalImg.src = imageUrl;
+        modalCaption.innerHTML = caption;
+
+        // Show the modal
+        var myModal = new bootstrap.Modal(document.getElementById('izinModal'), {
+            keyboard: false
+        });
+        myModal.show();
+    }
+</script>
+
 @endpush
