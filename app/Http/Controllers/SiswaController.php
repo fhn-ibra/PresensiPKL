@@ -160,7 +160,7 @@ class SiswaController extends Controller
         $data = [
             'title' => 'Histori',
             'bulan' => ($request->bulan == null ? Carbon::now()->month : $request->bulan),
-            'absen' => ($request->bulan == null ? Absen::whereMonth('tanggal', Carbon::now()->month)->get() : Absen::whereMonth('tanggal', $request->bulan)->get())
+            'absen' => ($request->bulan == null ? Absen::whereMonth('tanggal', Carbon::now()->month)->where('id_siswa', Auth::user()->siswa->first()->id)->get() : Absen::whereMonth('tanggal', $request->bulan)->where('id_siswa', Auth::user()->siswa->first()->id)->get())
         ];
         return view('Siswa.histori', $data);
     }
