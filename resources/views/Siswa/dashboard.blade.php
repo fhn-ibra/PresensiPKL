@@ -59,11 +59,11 @@
         <div class="attendance-times">
             <div>
                 <h3>Absen Masuk</h3>
-                <span id="clock-in-time">{{ $absen->jam_masuk ?? '--:--:--' }}</span>
+                <span id="clock-in-time" style="color: {{ $absen->status == 'Izin' ? 'orange' : ($absen->jam_masuk == null ? 'red' : 'green') }}">{{ $absen->status == 'Izin' ? 'Izin' : ($absen->jam_masuk ?? '--:--:--') }}</span>
             </div>
             <div>
                 <h3>Absen Keluar</h3>
-                <span id="clock-out-time">{{ $absen->jam_keluar ?? '--:--:--' }}</span>
+                <span id="clock-out-time" style="color: {{ $absen->status == 'Izin' ? 'orange' : ($absen->jam_masuk == null ? 'red' : 'green') }}">{{ $absen->status == 'Izin' ? 'Izin' : ($absen->jam_keluar ?? '--:--:--') }}</span>
             </div>
         </div>
     </div>
