@@ -8004,13 +8004,14 @@ body.dark-mode-active .cart-item .cart-item-footer {
 }
 
 #user-detail {
-    margin-top: 20px;
     display: flex;
 }
 
 #user-info {
     margin-left: 30px !important;
-    line-height: 2px;
+    line-height: 1.2em; /* Adjusted line-height for better spacing */
+    font-size: 1em;
+    color: white;
 }
 
 #user-name {
@@ -8019,11 +8020,9 @@ body.dark-mode-active .cart-item .cart-item-footer {
 
 #user-role {
     color: white;
-    max-width: 20%;
 }
 
 #menu-section {
-    position: absolute;
     width: 100%;
     top: 120px;
     z-index: 999;
@@ -8035,7 +8034,6 @@ body.dark-mode-active .cart-item .cart-item-footer {
 }
 
 #presence-section {
-    position: absolute;
     top: 150px;
     width: 100%;
     background-color: #e9ecef;
@@ -8043,7 +8041,7 @@ body.dark-mode-active .cart-item .cart-item-footer {
 }
 
 .todaypresence {
-    margin-top: 90px;
+    margin-top: 200px;
     margin-bottom: 20px;
 }
 
@@ -8075,7 +8073,8 @@ body.dark-mode-active .cart-item .cart-item-footer {
 }
 
 .presencedetail {
-    line-height: 2px;
+    line-height: 1.2em; /* Adjusted line-height for better spacing */
+    text-align: center;
 }
 
 .presencetitle {
@@ -8095,5 +8094,72 @@ body.dark-mode-active .cart-item .cart-item-footer {
 @media screen and (max-width: 480px) {
     #user-section {
         flex-direction: column;
+        align-items: flex-start; /* Align items to the start */
     }
+}
+
+.attendance-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 300px;
+    margin: 30px auto;
+    text-align: center;
+    margin-top: 120px;
+}
+
+.attendance-card h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.attendance-times {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.attendance-times span {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+.attendance-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.attendance-buttons button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    flex: 1;
+    margin: 0 5px;
+}
+
+.attendance-buttons button:hover {
+    background-color: #0056b3;
+}
+
+.attendance-buttons ion-icon {
+    margin-right: 5px;
+}
+
+.logout {
+    position: absolute;
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+    right: 8px;
+}
+
+.logout:hover {
+    color: white;
 }

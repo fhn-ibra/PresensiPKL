@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-    <div class="section" id="menu-section" style="margin-top: 30px">
+    <div class="section" id="menu-section">
         <div class="card">
             <div class="card-body text-center">
                 <div class="list-menu">
@@ -55,10 +55,21 @@
             </div>
         </div>
     </div>
-    <div class="section mt-2" id="presence-section" style="">
+    <div class="attendance-card">
+        <div class="attendance-times">
+            <div>
+                <h3>Absen Masuk</h3>
+                <span id="clock-in-time">{{ $absen->jam_masuk ?? '--:--:--' }}</span>
+            </div>
+            <div>
+                <h3>Absen Keluar</h3>
+                <span id="clock-out-time">{{ $absen->jam_keluar ?? '--:--:--' }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="section mt-2" id="presence-section">
         <div class="todaypresence">
             <div class="row">
-
                 @if(!empty($absen->foto_masuk))
                 <div class="col-12">
                     <div class="card gradasigreen" style="margin-bottom: 20px; margin-top: 50px">
@@ -66,10 +77,6 @@
                             <div class="presencecontent">
                                 <div class="iconpresence">
                                     <img src="/storage/absensi/{{ $absen->foto_masuk }}" alt="Foto_Masuk" height="75px" width="125px">
-                                </div>
-                                <div class="presencedetail" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                                    <h4 class="presencetitle">Masuk</h4>
-                                    <span>{{ $absen->jam_masuk }}</span>
                                 </div>
                             </div>
                         </div>
@@ -83,7 +90,7 @@
                                 <div class="iconpresence">
                                     <ion-icon name="camera" style="height: 75px; width= 125px"></ion-icon>
                                 </div>
-                                <div class="presencedetail" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div class="presencedetail">
                                     <h4 class="presencetitle">Masuk</h4>
                                     <span>Belum Absen</span>
                                 </div>
@@ -93,7 +100,6 @@
                 </div>
                 @endif
 
-
                 @if(!empty($absen->foto_keluar))
                 <div class="col-12">
                     <div class="card gradasired">
@@ -101,10 +107,6 @@
                             <div class="presencecontent">
                                 <div class="iconpresence">
                                     <img src="/storage/absensi/{{ $absen->foto_keluar }}" alt="Foto_Keluar" height="75px" width="125px">
-                                </div>
-                                <div class="presencedetail" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                                    <h4 class="presencetitle">Keluar</h4>
-                                    <span>{{ $absen->jam_keluar }}</span>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +120,7 @@
                                 <div class="iconpresence">
                                     <ion-icon name="camera" style="height: 75px; width= 125px"></ion-icon>
                                 </div>
-                                <div class="presencedetail" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div class="presencedetail">
                                     <h4 class="presencetitle">Keluar</h4>
                                     <span>Belum Absen</span>
                                 </div>
@@ -161,3 +163,4 @@
             return e;
         }
     </script>
+@endpush

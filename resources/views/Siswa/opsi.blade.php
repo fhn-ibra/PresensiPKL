@@ -18,7 +18,7 @@
             <div class="row" style="margin-top:70px">
                 <div class="col-12">
                   <div class="card mb-1 clickable-card" style="border : 1px solid blue">
-                    <a href="#">  <div class="card-body">
+                    <a href="/create">  <div class="card-body">
                         <div class="historicontent">
                           <div class="iconpresensi">
                             <ion-icon name="accessibility-outline" style="font-size: 48px;" class="text-success"></ion-icon>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-12">
                   <div class="card mb-1 clickable-card" style="border : 1px solid blue">
-                    <a href="#">  <div class="card-body">
+                    <a href="/izin">  <div class="card-body">
                         <div class="historicontent">
                           <div class="iconpresensi">
                             <ion-icon name="ban-outline" style="font-size: 48px;" class="text-danger"></ion-icon>
