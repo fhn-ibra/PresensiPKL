@@ -15,7 +15,6 @@ class Siswa extends Model
     protected $fillable = [
         'id_user',
         'id_perusahaan',
-        'id_guru',
         'kelas',
     ];
 
