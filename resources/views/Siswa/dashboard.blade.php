@@ -68,8 +68,6 @@
         </div>
     </div>
     <div class="section mt-2" id="presence-section">
-        <div class="todaypresence">
-            <div class="row">
                 @if(!empty($absen->foto_masuk))
                 <div class="col-12">
                     <div class="card gradasigreen" style="margin-bottom: 20px; margin-top: 50px">
@@ -129,9 +127,7 @@
                     </div>
                 </div>
                 @endif
-            </div>
         </div>
-    </div>
 </div>
 @endsection
 
