@@ -265,7 +265,7 @@
 </div>
 
 </div>
-<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+<div class="modal modal-blur fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
             <div class="modal-header">
@@ -288,11 +288,11 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="izinModal" tabindex="-1" role="dialog" aria-labelledby="izinModalLabel" aria-hidden="true">
+<div class="modal modal-blur fade" id="izinModal" tabindex="-1" role="dialog" aria-labelledby="izinModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="izinModalLabel">Detail Gambar dan Keterangan</h5>
+                <h5 class="modal-title" id="izinModalLabel">Detail Izin dan Keterangan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
