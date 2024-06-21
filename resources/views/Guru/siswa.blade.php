@@ -40,35 +40,35 @@
 
                                                 <select name="kelas" class="form-select">
                                                     <option value="">Semua Kelas</option>
-                                                    <option value="XI BCF 1"
-                                                        {{ $reqkelas == 'XI BCF 1' ? 'selected' : '' }}>XI BCF 1
+                                                    <option value="XII BCF 1"
+                                                        {{ $reqkelas == 'XII BCF 1' ? 'selected' : '' }}>XII BCF 1
                                                     </option>
-                                                    <option value="XI BCF 2"
-                                                        {{ $reqkelas == 'XI BCF 2' ? 'selected' : '' }}>XI BCF 2
+                                                    <option value="XII BCF 2"
+                                                        {{ $reqkelas == 'XII BCF 2' ? 'selected' : '' }}>XII BCF 2
                                                     </option>
-                                                    <option value="XI DKV 1"
-                                                        {{ $reqkelas == 'XI DKV 1' ? 'selected' : '' }}>XI DKV 1
+                                                    <option value="XII DKV 1"
+                                                        {{ $reqkelas == 'XII DKV 1' ? 'selected' : '' }}>XII DKV 1
                                                     </option>
-                                                    <option value="XI DKV 2"
-                                                        {{ $reqkelas == 'XI DKV 2' ? 'selected' : '' }}>XI DKV 2
+                                                    <option value="XII DKV 2"
+                                                        {{ $reqkelas == 'XII DKV 2' ? 'selected' : '' }}>XII DKV 2
                                                     </option>
-                                                    <option value="XI DKV 3"
-                                                        {{ $reqkelas == 'XI DKV 3' ? 'selected' : '' }}>XI DKV 3
+                                                    <option value="XII DKV 3"
+                                                        {{ $reqkelas == 'XII DKV 3' ? 'selected' : '' }}>XII DKV 3
                                                     </option>
-                                                    <option value="XI PPLG 1"
-                                                        {{ $reqkelas == 'XI PPLG 1' ? 'selected' : '' }}>XI PPLG 1
+                                                    <option value="XII PPLG 1"
+                                                        {{ $reqkelas == 'XII PPLG 1' ? 'selected' : '' }}>XII PPLG 1
                                                     </option>
-                                                    <option value="XI PPLG 2"
-                                                        {{ $reqkelas == 'XI PPLG 2' ? 'selected' : '' }}>XI PPLG 2
+                                                    <option value="XII PPLG 2"
+                                                        {{ $reqkelas == 'XII PPLG 2' ? 'selected' : '' }}>XII PPLG 2
                                                     </option>
-                                                    <option value="XI PPLG 3"
-                                                        {{ $reqkelas == 'XI PPLG 3' ? 'selected' : '' }}>XI PPLG 3
+                                                    <option value="XII PPLG 3"
+                                                        {{ $reqkelas == 'XII PPLG 3' ? 'selected' : '' }}>XII PPLG 3
                                                     </option>
-                                                    <option value="XI TKJT 1"
-                                                        {{ $reqkelas == 'XI TKJT 1' ? 'selected' : '' }}>XI TKJT 1
+                                                    <option value="XII TKJT 1"
+                                                        {{ $reqkelas == 'XII TKJT 1' ? 'selected' : '' }}>XII TKJT 1
                                                     </option>
-                                                    <option value="XI TKJT 2"
-                                                        {{ $reqkelas == 'XI TKJT 2' ? 'selected' : '' }}>XI TKJT 2
+                                                    <option value="XII TKJT 2"
+                                                        {{ $reqkelas == 'XII TKJT 2' ? 'selected' : '' }}>XII TKJT 2
                                                     </option>
                                                 </select>
                                             </div>
