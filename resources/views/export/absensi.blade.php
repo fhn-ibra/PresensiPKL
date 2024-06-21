@@ -24,9 +24,15 @@
             <td style="border: 1px solid black;">{{ $item->siswa->kelas }}</td>
             <td style="border: 1px solid black;">{{ $item->siswa->perusahaan->nama }}</td>
             <td style="border: 1px solid black;">{{ $item->siswa->perusahaan->guru->user->nama }}</td>
-            <td style="border: 1px solid black; background-color:{{ $item->status == 'Hadir' ? 'greenyellow' : 'red' }}">{{ $item->status }}</td>
-            <td style="border: 1px solid black;">{{ $item->jam_masuk }}</td>
-            <td style="border: 1px solid black;">{{ $item->jam_keluar }}</td>
+            <td style="border: 1px solid black; background-color:{{ $item->status == 'Hadir' ? 'greenyellow' : ($item->status == 'Izin' ? 'orange' : 'red') }}">{{ $item->status }}</td>
+            @if($item->status == 'Izin')
+            <td style="border: 1px solid black; background-color: orange">Izin</td>
+            <td style="border: 1px solid black; background-color: orange">Izin</td>
+            @else
+            <td style="border: 1px solid black; {{ $item->jam_masuk == null ? 'background-color: red' : '' }}">{{ $item->jam_masuk == null ? 'Belum Absen' : $item->jam_masuk }}</td>
+            <td style="border: 1px solid black; {{ $item->jam_keluar == null ? 'background-color: red' : '' }}">{{ $item->jam_keluar == null ? 'Belum Absen' : $item->jam_keluar }}</td>
+            @endif
+
             @if ($item->keterangan == null)
             <td style="border: 1px solid black; background-color:greenyellow">Tidak Izin</td>
             @else
