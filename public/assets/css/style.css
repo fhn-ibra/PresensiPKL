@@ -8002,7 +8002,6 @@ body.dark-mode-active .cart-item .cart-item-footer {
     padding: 20px;
     display: flex;
     line-height: 1.2em; /* Adjusted line-height for better spacing */
-
 }
 
 #user-detail {
@@ -8071,6 +8070,15 @@ body.dark-mode-active .cart-item .cart-item-footer {
     );
 }
 
+.gradasigrey {
+    color: white;
+    background-image: linear-gradient(
+        to bottom right,
+        rgba(128, 128, 128, 1),
+        rgba(105, 105, 105, 0.8)
+    );
+}
+
 .iconpresence {
     font-size: 30px;
 }
@@ -8101,21 +8109,21 @@ body.dark-mode-active .cart-item .cart-item-footer {
     }
 }
 
-    .attendance-card {
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        max-width: 300px;
-        margin: 10px auto;
-        text-align: center;
-    }
+.attendance-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 300px;
+    margin: 10px auto;
+    text-align: center;
+}
 
-    .attendance-card h3 {
-        margin: 0;
-        font-size: 1.2em;
-        color: #333;
-    }
+.attendance-card h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
 
 .attendance-times {
     display: flex;

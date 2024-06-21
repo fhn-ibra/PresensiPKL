@@ -68,7 +68,7 @@
         </div>
     </div>
     <div class="section mt-2" id="presence-section">
-                @if(!empty($absen->foto_masuk))
+                @if(!empty($absen->foto_masuk) && $absen->status != 'Izin')
                 <div class="col-12">
                     <div class="card gradasigreen" style="margin-bottom: 20px; margin-top: 50px">
                         <div class="card-body">
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                 </div>
-                @else 
+                @elseif(empty($absen->foto_masuk) && $absen->status != 'Izin') 
                 <div class="col-12">
                     <div class="card gradasigreen" style="margin-bottom: 20px; margin-top: 50px">
                         <div class="card-body">
@@ -98,7 +98,7 @@
                 </div>
                 @endif
 
-                @if(!empty($absen->foto_keluar))
+                @if(!empty($absen->foto_keluar) && $absen->status != 'Izin')
                 <div class="col-12">
                     <div class="card gradasired">
                         <div class="card-body">
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                 </div>
-                @else
+                @elseif(empty($absen->foto_keluar) && $absen->status != 'Izin')
                 <div class="col-12">
                     <div class="card gradasired">
                         <div class="card-body">
@@ -121,6 +121,21 @@
                                 <div class="presencedetail">
                                     <h4 class="presencetitle">Keluar</h4>
                                     <span>Belum Absen</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
+
+                @if($absen->status == 'Izin')
+                <div class="col-12">
+                    <div class="card gradasigrey">
+                        <div class="card-body">
+                            <div class="presencecontent">
+                                <div class="iconpresence">
+                                    <img src="/storage/absensi/{{ $absen->foto }}" alt="Foto_Keluar" height="75px" width="125px">
                                 </div>
                             </div>
                         </div>
@@ -138,21 +153,25 @@
         }
 
         function jam() {
-        var e = document.getElementById('jam'),
-            d = new Date(),
-            h, m, s, year, month, date;
+            var e = document.getElementById('jam'),
+                d = new Date(),
+                h, m, s, year, month, date, day;
 
-        h = d.getHours();
-        m = set(d.getMinutes());
-        s = set(d.getSeconds());
-        year = d.getFullYear();
-        month = set(d.getMonth() + 1); // getMonth() returns 0-11
-        date = set(d.getDate());
+            var days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            var months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
-        e.innerHTML = date + '-' + month + '-' + year + ' ' + h + ':' + m + ':' + s;
+            h = d.getHours();
+            m = set(d.getMinutes());
+            s = set(d.getSeconds());
+            year = d.getFullYear();
+            month = months[d.getMonth()]; // getMonth() returns 0-11
+            date = set(d.getDate());
+            day = days[d.getDay()]; // getDay() returns 0-6
 
-        setTimeout(jam, 1000); // no need to pass the function name as a string
-    }
+            e.innerHTML = day + ', ' + date + ' ' + month + ' ' + year + ' ' + h + ':' + m + ':' + s;
+
+            setTimeout(jam, 1000); // no need to pass the function name as a string
+        }
 
         function set(e) {
             e = e < 10 ? '0' + e : e;
