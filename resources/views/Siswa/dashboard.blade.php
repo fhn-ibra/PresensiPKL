@@ -33,10 +33,10 @@
     <div class="section" id="user-section">
         <div id="user-detail" style="margin-top: 50px">
             <div id="user-info">
-                <h3 id="user-name">{{ Auth::user()->nama }}</h3>
-                <span id="user-role">{{ Auth::user()->siswa->first()->kelas }}</span>
+                <h3 id="user-name">{{ $akun->nama }}</h3>
+                <span id="user-role">{{ $siswa->kelas }}</span>
                 <p>
-                    <span id="user-role">{{ Auth::user()->siswa->first()->perusahaan->first()->nama }}</span>
+                    <span id="user-role">{{ $perusahaan->nama }}</span>
                 </p>
             </div>
         </div>
@@ -59,11 +59,15 @@
         <div class="attendance-times">
             <div>
                 <h3>Absen Masuk</h3>
-                <span id="clock-in-time" style="color: {{ $absen->status == 'Izin' ? 'orange' : ($absen->jam_masuk == null ? 'red' : 'green') }}">{{ $absen->status == 'Izin' ? 'Izin' : ($absen->jam_masuk ?? '--:--:--') }}</span>
+                <span id="clock-in-time" style="color: {{ is_null($absen) || ($absen->jam_masuk == null && $absen->status != 'Izin') ? 'red' : ($absen->status == 'Izin' ? 'orange' : 'green') }}">
+   {{ is_null($absen) ? '--:--:--' : ($absen->status == 'Izin' ? 'Izin' : ($absen->jam_masuk ?? '--:--:--')) }}
+</span>
             </div>
             <div>
                 <h3>Absen Keluar</h3>
-                <span id="clock-out-time" style="color: {{ $absen->status == 'Izin' ? 'orange' : ($absen->jam_masuk == null ? 'red' : 'green') }}">{{ $absen->status == 'Izin' ? 'Izin' : ($absen->jam_keluar ?? '--:--:--') }}</span>
+                <span id="clock-out-time" style="color: {{ is_null($absen) || ($absen->jam_keluar == null && $absen->status != 'Izin') ? 'red' : ($absen->status == 'Izin' ? 'orange' : 'green') }}">
+   {{ is_null($absen) ? '--:--:--' : ($absen->status == 'Izin' ? 'Izin' : ($absen->jam_keluar ?? '--:--:--')) }}
+</span>
             </div>
         </div>
     </div>
@@ -80,7 +84,7 @@
                         </div>
                     </div>
                 </div>
-                @elseif(empty($absen->foto_masuk) && $absen->status != 'Izin') 
+              @elseif (!is_null($absen) && empty($absen->foto_masuk) && $absen->status != 'Izin') 
                 <div class="col-12">
                     <div class="card gradasigreen" style="margin-bottom: 20px; margin-top: 50px">
                         <div class="card-body">
@@ -110,7 +114,7 @@
                         </div>
                     </div>
                 </div>
-                @elseif(empty($absen->foto_keluar) && $absen->status != 'Izin')
+                @elseif(!is_null($absen) && empty($absen->foto_keluar) && $absen->status != 'Izin') 
                 <div class="col-12">
                     <div class="card gradasired">
                         <div class="card-body">
@@ -129,7 +133,7 @@
                 @endif
 
 
-                @if($absen->status == 'Izin')
+                @if(!is_null($absen) && $absen->status == 'Izin')
                 <div class="col-12">
                     <div class="card gradasigrey">
                         <div class="card-body">

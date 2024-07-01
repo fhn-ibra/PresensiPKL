@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Absen;
 use App\Models\Siswa;
+use App\Models\User;
+use App\Models\Perusahaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -13,9 +15,17 @@ use Illuminate\Support\Facades\Validator;
 class SiswaController extends Controller
 {
     public function index(){
+        
+        $id = Auth::user()->id;
+        $akun = User::where('id', $id)->first();
+        $siswa = Siswa::where('id_user', $id)->first();
+        $perusahaan = Perusahaan::where('id', $siswa->id_perusahaan)->first();
         $data = [
             'absen' => Absen::where('id_siswa', Auth::user()->siswa->first()->id)->where('tanggal', Carbon::now()->toDateString())->first(),
-            'title' => 'Home'
+            'title' => 'Home',
+            'akun' => $akun,
+            'siswa' => $siswa,
+            'perusahaan' => $perusahaan
         ];
         return view('Siswa.dashboard ', $data);
     }

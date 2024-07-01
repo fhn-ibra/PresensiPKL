@@ -277,7 +277,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h6>Lokasi:</h6>
-                        <div id="mapid" style="height: 300px;"></div>
+                        <div id="map"></div>
                     </div>
                     <div class="col-md-6">
                         <h6>Gambar:</h6>
@@ -321,15 +321,19 @@ function showDetails(imageUrl, location) {
     var modal = new bootstrap.Modal(document.getElementById('detailModal'), {});
     modal.show();
 
-    var map = L.map('mapid').setView([0, 0], 15); 
+    
+    if(location != ''){
+    document.getElementById('map').innerHTML = "<div id='mapid' style='height: 300px;'></div>"
+        
+    var loc = location.split(',');
+    var map = L.map('mapid').setView([loc[0], loc[1]], 15);
+    
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
     }).addTo(map);
-
-    var loc = location.split(',');
+    }
+    console.log(loc[0], loc[1])
     L.marker([parseFloat(loc[0]), parseFloat(loc[1])]).addTo(map)
-        .bindPopup('Siswa Berada Disini')
-        .openPopup();
 
     var image = document.createElement('img');
     image.src = imageUrl;
@@ -339,6 +343,7 @@ function showDetails(imageUrl, location) {
     imageContainer.appendChild(image);
 }
 </script>
+
 <script>
     function showDetail(imageUrl, caption) {
         // Set the image and caption in the modal
